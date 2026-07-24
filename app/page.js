@@ -86,12 +86,41 @@ export default function Home() {
       setStep(step + 1);
     } else {
 
-      const highest = Object.keys(updated)
-      .reduce((a,b)=>
-        updated[a] >= updated[b] ? a : b
-      );
+      const build = updated.Build;
+const adapt = updated.Adapt;
+const drive = updated.Drive;
 
-      setResult(highest);
+let profile = "";
+
+if(build > 0 && adapt > 0 && drive > 0){
+  profile = "Cloud";
+}
+
+else if(build > 0 && drive > 0){
+  profile = "Founder";
+}
+
+else if(adapt > 0 && drive > 0){
+  profile = "Explorer";
+}
+
+else if(build > 0 && adapt > 0){
+  profile = "Architect";
+}
+
+else if(build > 0){
+  profile = "Builder";
+}
+
+else if(adapt > 0){
+  profile = "Navigator";
+}
+
+else {
+  profile = "Driver";
+}
+
+setResult(profile);
     }
 
   }
