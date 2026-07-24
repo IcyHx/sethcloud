@@ -4,347 +4,283 @@ import { useState, useEffect } from "react";
 
 export default function Home() {
 
-  const [entered, setEntered] = useState(false);
+const [entered,setEntered] = useState(false);
 
 
-  useEffect(() => {
+useEffect(()=>{
 
-    const timer = setTimeout(() => {
-      setEntered(true);
-    }, 5000);
+const timer=setTimeout(()=>{
 
-    return () => clearTimeout(timer);
+setEntered(true);
 
-  }, []);
+},12000);
 
 
-  return (
+return()=>clearTimeout(timer);
 
-    <main
-      style={{
-        minHeight:"100vh",
-        background:"linear-gradient(#050505,#162015)",
-        color:"white",
-        fontFamily:"Arial",
-        overflow:"hidden"
-      }}
-    >
+},[]);
 
-    {!entered ? (
 
-      <section
-        style={{
-          height:"100vh",
-          display:"flex",
-          justifyContent:"center",
-          alignItems:"center",
-          flexDirection:"column",
-          position:"relative",
-          textAlign:"center"
-        }}
-      >
 
+return(
 
-      {/* Atmosphere */}
+<main className="world">
 
-      <div className="fog"></div>
 
+{!entered ? (
 
-      <div className="cloud cloudOne">
-        ☁️
-      </div>
+<section className="cinematic">
 
 
-      <div className="cloud cloudTwo">
-        ☁️
-      </div>
+<div className="sky">
 
+<div className="cloud one">
+☁️
+</div>
 
+<div className="cloud two">
+☁️
+</div>
 
-      {/* Forest */}
+</div>
 
-      <div className="forest">
 
-        🌲 🌲 🌲 🌲 🌲
 
-      </div>
+<div className="forest">
 
+🌲 🌲 🌲 🌲 🌲 🌲
 
+</div>
 
-      {/* Road */}
 
-      <div className="road"></div>
 
+<div className="camera">
 
 
-      {/* CLOUD TRAVELER */}
+<div className="traveler">
 
-      <div className="traveler">
 
+<div className="shadow"></div>
 
-        <div className="shadow"></div>
 
+<div className="backpack"></div>
 
-        <div className="backpack"></div>
 
+<div className="hair"></div>
 
-        <div className="hair"></div>
 
+<div className="head"></div>
 
-        <div className="head"></div>
 
+<div className="hood"></div>
 
-        <div className="hood"></div>
 
+<div className="body">
 
-        <div className="body">
+☁️
 
-          ☁️
+</div>
 
-        </div>
 
+<div className="leg left"></div>
 
-        <div className="leg left"></div>
+<div className="leg right"></div>
 
-        <div className="leg right"></div>
 
+</div>
 
-      </div>
 
+</div>
 
 
-      <h1
-      style={{
-        fontSize:"42px",
-        letterSpacing:"8px",
-        zIndex:5
-      }}
-      >
 
-      EVERY PERSON HAS A ROAD
+<div className="road"></div>
 
-      </h1>
 
 
+<h1>
 
-      <p
-      style={{
-        opacity:.75,
-        fontSize:"20px",
-        zIndex:5
-      }}
-      >
+EVERY PERSON HAS A ROAD
 
-      Understand the terrain. Choose your direction.
+</h1>
 
-      </p>
 
+<p>
 
+The journey begins.
 
-      </section>
+</p>
 
 
-    ) : (
+</section>
 
 
-      <section
-      style={{
-        padding:"60px",
-        textAlign:"center"
-      }}
-      >
 
-      <h1
-      style={{
-        fontSize:"70px",
-        letterSpacing:"12px"
-      }}
-      >
+):(
 
-      SETH CLOUD
 
-      </h1>
 
+<section className="home">
 
-      <p
-      style={{
-        fontSize:"26px"
-      }}
-      >
 
-      Build. Adapt. Create.
+<h1>
 
-      </p>
+SETH CLOUD
 
+</h1>
 
 
-      <div>
+<p>
 
-      <button>
-      📚 Learn The Principles
-      </button>
+Build. Adapt. Create.
 
+</p>
 
-      <button>
-      🛣️ Explore The Journey
-      </button>
 
+<button>
+📚 Learn The Principles
+</button>
 
-      <button>
-      🤖 Meet Road Buddy
-      </button>
 
+<button>
+🛣️ Explore The Journey
+</button>
 
-      <button>
-      📂 View The Work
-      </button>
 
+<button>
+🤖 Meet Road Buddy
+</button>
 
-      </div>
 
+<button>
+📂 View The Work
+</button>
 
-      </section>
 
+</section>
 
-    )}
+
+)}
 
 
 
 <style jsx>{`
 
+.world{
 
-
-.fog {
-
-position:absolute;
-
-width:100%;
-height:100%;
-
-background:
-linear-gradient(
-rgba(255,255,255,.05),
-transparent
-);
-
-animation:fogMove 8s infinite alternate;
+min-height:100vh;
+background:#050505;
+color:white;
+overflow:hidden;
+font-family:Arial;
 
 }
 
 
 
-.cloud {
+.cinematic{
+
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+position:relative;
+
+}
+
+
+
+.sky{
 
 position:absolute;
+width:100%;
+height:100%;
 
-font-size:90px;
+background:
+linear-gradient(#07111f,#182818);
 
+}
+
+
+
+.cloud{
+
+position:absolute;
+font-size:100px;
 opacity:.15;
 
 }
 
 
 
-.cloudOne {
+.one{
 
 top:80px;
+left:10%;
 
-left:15%;
-
-animation:cloudMove 12s infinite alternate;
-
-}
-
-
-
-.cloudTwo {
-
-top:200px;
-
-right:15%;
-
-animation:cloudMove 18s infinite alternate;
+animation:cloudSlow 15s infinite alternate;
 
 }
 
 
 
+.two{
 
-.forest {
+top:220px;
+right:10%;
+
+animation:cloudSlow 20s infinite alternate;
+
+}
+
+
+
+.forest{
 
 position:absolute;
+bottom:180px;
 
-bottom:140px;
-
-width:100%;
-
-font-size:90px;
+width:120%;
+font-size:100px;
 
 opacity:.25;
 
-z-index:1;
+animation:backgroundMove 20s linear infinite;
 
 }
 
 
 
-.road {
+.camera{
 
-position:absolute;
+z-index:5;
 
-bottom:0;
-
-width:100%;
-
-height:160px;
-
-
-background:
-repeating-linear-gradient(
-90deg,
-transparent,
-transparent 80px,
-#333 80px,
-#333 85px
-);
-
-
-animation:roadMove 4s linear infinite;
+animation:cameraFollow 8s infinite alternate;
 
 }
 
 
 
-
-/* TRAVELER */
-
-
-.traveler {
+.traveler{
 
 position:relative;
 
 width:100px;
+height:230px;
 
-height:220px;
-
-z-index:4;
-
-animation:walk 3s infinite;
+animation:walk 2s infinite;
 
 }
 
 
 
-.shadow {
+.shadow{
 
 position:absolute;
-
 bottom:0;
 
-left:20px;
-
-width:65px;
-
+width:70px;
 height:15px;
 
 background:rgba(0,0,0,.5);
@@ -355,59 +291,51 @@ border-radius:50%;
 
 
 
-
-.head {
+.head{
 
 position:absolute;
 
-top:35px;
+top:30px;
+left:32px;
 
-left:35px;
-
-width:38px;
-
+width:42px;
 height:42px;
 
-border-radius:50%;
-
 background:#8b5a3c;
+
+border-radius:50%;
 
 }
 
 
 
-
-.hair {
+.hair{
 
 position:absolute;
 
-top:25px;
+top:20px;
+left:28px;
 
-left:30px;
-
-width:50px;
-
+width:52px;
 height:22px;
 
 background:#111;
 
-border-radius:15px;
+border-radius:20px;
 
 }
 
 
 
-.backpack {
+.backpack{
 
 position:absolute;
 
-top:90px;
-
-left:8px;
+top:85px;
+left:5px;
 
 width:25px;
-
-height:60px;
+height:70px;
 
 background:#333;
 
@@ -417,43 +345,37 @@ border-radius:12px;
 
 
 
-
-.hood {
+.hood{
 
 position:absolute;
 
-top:75px;
+top:70px;
+left:20px;
 
-left:25px;
+width:60px;
+height:40px;
 
-width:55px;
+background:#222;
 
-height:35px;
-
-border-radius:25px;
-
-background:#1b1b1b;
+border-radius:20px;
 
 }
 
 
 
-
-.body {
+.body{
 
 position:absolute;
 
 top:95px;
+left:20px;
 
-left:25px;
-
-width:60px;
-
-height:75px;
+width:65px;
+height:80px;
 
 background:#222;
 
-border-radius:15px;
+border-radius:18px;
 
 display:flex;
 
@@ -461,22 +383,18 @@ align-items:center;
 
 justify-content:center;
 
-font-size:22px;
-
 }
 
 
 
-
-.leg {
+.leg{
 
 position:absolute;
 
 top:165px;
 
 width:10px;
-
-height:55px;
+height:60px;
 
 background:#111;
 
@@ -484,9 +402,9 @@ background:#111;
 
 
 
-.left {
+.left{
 
-left:40px;
+left:35px;
 
 animation:step 1s infinite alternate;
 
@@ -494,7 +412,7 @@ animation:step 1s infinite alternate;
 
 
 
-.right {
+.right{
 
 left:65px;
 
@@ -504,8 +422,67 @@ animation:step 1s infinite alternate-reverse;
 
 
 
+.road{
 
-button {
+position:absolute;
+
+bottom:0;
+
+width:150%;
+
+height:170px;
+
+background:
+
+repeating-linear-gradient(
+90deg,
+transparent,
+transparent 80px,
+#444 80px,
+#444 85px
+);
+
+
+animation:roadMove 2s linear infinite;
+
+}
+
+
+
+h1{
+
+z-index:10;
+
+font-size:42px;
+
+letter-spacing:8px;
+
+}
+
+
+
+p{
+
+z-index:10;
+
+font-size:22px;
+
+opacity:.7;
+
+}
+
+
+
+.home{
+
+padding:60px;
+text-align:center;
+
+}
+
+
+
+button{
 
 padding:18px;
 
@@ -527,23 +504,18 @@ font-size:18px;
 
 
 
-@keyframes walk {
+@keyframes cameraFollow{
 
-0% {
+from{
 
-transform:translateX(-30px);
-
-}
-
-50% {
-
-transform:translateX(30px);
+transform:translateY(0) scale(1);
 
 }
 
-100% {
 
-transform:translateX(-30px);
+to{
+
+transform:translateY(-15px) scale(1.05);
 
 }
 
@@ -551,35 +523,18 @@ transform:translateX(-30px);
 
 
 
-@keyframes step {
+@keyframes backgroundMove{
 
-from {
+from{
 
-transform:rotate(8deg);
-
-}
-
-to {
-
-transform:rotate(-8deg);
-
-}
+transform:translateX(0);
 
 }
 
 
+to{
 
-@keyframes cloudMove {
-
-from {
-
-transform:translateX(-40px);
-
-}
-
-to {
-
-transform:translateX(40px);
+transform:translateX(-150px);
 
 }
 
@@ -587,17 +542,44 @@ transform:translateX(40px);
 
 
 
-@keyframes roadMove {
+@keyframes roadMove{
 
-from {
+from{
 
 transform:translateY(0);
 
 }
 
-to {
 
-transform:translateY(80px);
+to{
+
+transform:translateY(100px);
+
+}
+
+}
+
+
+
+@keyframes walk{
+
+0%{
+
+transform:translateX(-15px);
+
+}
+
+
+50%{
+
+transform:translateX(15px);
+
+}
+
+
+100%{
+
+transform:translateX(-15px);
 
 }
 
@@ -605,17 +587,37 @@ transform:translateY(80px);
 
 
 
-@keyframes fogMove {
+@keyframes step{
 
-from {
+from{
 
-opacity:.2;
+transform:rotate(10deg);
 
 }
 
-to {
 
-opacity:.5;
+to{
+
+transform:rotate(-10deg);
+
+}
+
+}
+
+
+
+@keyframes cloudSlow{
+
+from{
+
+transform:translateX(-40px);
+
+}
+
+
+to{
+
+transform:translateX(40px);
 
 }
 
@@ -626,9 +628,8 @@ opacity:.5;
 `}</style>
 
 
-
 </main>
 
-  );
+);
 
 }
