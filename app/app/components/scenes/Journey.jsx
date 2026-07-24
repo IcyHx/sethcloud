@@ -2,205 +2,340 @@
 
 import { useEffect, useState } from "react";
 
+
 export default function Journey() {
 
-  const [shot, setShot] = useState("wide");
+
+  const [phase, setPhase] = useState("summit");
 
 
   useEffect(() => {
 
-    const timer = setTimeout(() => {
 
-      setShot("follow");
+    const rewind = setTimeout(() => {
 
-    }, 5000);
+      setPhase("rewind");
+
+    }, 8000);
 
 
-    const secondTimer = setTimeout(() => {
 
-      setShot("reveal");
+    const beginning = setTimeout(() => {
 
-    }, 15000);
+      setPhase("beginning");
+
+    }, 14000);
+
 
 
     return () => {
-      clearTimeout(timer);
-      clearTimeout(secondTimer);
+
+      clearTimeout(rewind);
+
+      clearTimeout(beginning);
+
     };
+
 
   }, []);
 
 
 
+
+
   return (
 
-    <section className="scene">
-
-
-      {/* SKY */}
-
-      <div className="sky">
-
-        ☁️
-
-      </div>
+    <main className={`cinematic ${phase}`}>
 
 
 
-      {/* DISTANT WORLD */}
+      {phase === "summit" && (
 
-      <div className="farTrees">
-
-        🌲      🌲        🌲
-
-      </div>
+        <section className="summit">
 
 
-
-      {/* CLOSER WORLD */}
-
-      <div className="nearTrees">
-
-        🌲  🌲  🌲  🌲
-
-      </div>
+          <div className="clouds">
+            ☁️ ☁️ ☁️
+          </div>
 
 
 
-      {/* ROAD */}
+          <div className="mountain">
 
-      <div className="road"></div>
-
-
-
-      {/* CAMERA */}
-
-      <div
-        className={`camera ${shot}`}
-      >
-
-
-        {/* TRAVELER */}
-
-        <div className="traveler">
-
-
-          <div className="hair"></div>
-
-
-          <div className="head"></div>
-
-
-          <div className="body">
-
-            ☁️
+            💵🏔️
 
           </div>
 
 
-          <div className="legs"></div>
+
+          <div className="traveler sitting">
 
 
-        </div>
+            <div className="hair"></div>
+
+            <div className="head"></div>
+
+            <div className="body">
+              ☁️
+            </div>
 
 
-      </div>
+          </div>
+
+
+
+          <div className="empire">
+
+            🏙️ 🏢 🌆
+
+          </div>
+
+
+
+        </section>
+
+      )}
+
+
+
+
+
+      {phase === "rewind" && (
+
+
+        <section className="memory">
+
+
+          <div className="flash">
+            
+            🏢 🤝 📚 💻 🌧️ 🌲 🛣️
+
+          </div>
+
+
+        </section>
+
+
+      )}
+
+
+
+
+
+
+      {phase === "beginning" && (
+
+
+        <section className="beginning">
+
+
+          <div className="ground"></div>
+
+
+
+          <div className="walker">
+
+
+            <div className="hair"></div>
+
+            <div className="head"></div>
+
+
+            <div className="body">
+
+              ☁️
+
+            </div>
+
+
+
+          </div>
+
+
+        </section>
+
+
+      )}
+
+
+
+
+
 
 
 
 <style jsx>{`
 
 
-.scene {
+
+.cinematic {
 
 height:100vh;
 
 overflow:hidden;
+
+background:#050505;
+
+color:white;
+
+}
+
+
+
+
+
+/* MONEY SUMMIT */
+
+
+.summit {
+
+height:100%;
 
 position:relative;
 
 background:
 
 linear-gradient(
-#1b2b44,
+
+#52677c,
+
 #111
+
+);
+
+overflow:hidden;
+
+}
+
+
+
+.clouds {
+
+position:absolute;
+
+top:50px;
+
+width:100%;
+
+text-align:center;
+
+font-size:100px;
+
+opacity:.4;
+
+animation:clouds 8s infinite alternate;
+
+}
+
+
+
+.mountain {
+
+position:absolute;
+
+bottom:180px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+font-size:180px;
+
+}
+
+
+
+.sitting {
+
+position:absolute;
+
+bottom:330px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+}
+
+
+
+.empire {
+
+position:absolute;
+
+bottom:80px;
+
+width:100%;
+
+text-align:center;
+
+font-size:80px;
+
+opacity:.7;
+
+}
+
+
+
+
+
+/* MEMORY REWIND */
+
+
+
+.memory {
+
+height:100%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+background:black;
+
+}
+
+
+
+.flash {
+
+font-size:70px;
+
+animation:rewind 2s infinite;
+
+}
+
+
+
+
+
+/* BEGINNING */
+
+
+
+.beginning {
+
+height:100%;
+
+position:relative;
+
+background:
+
+linear-gradient(
+
+#182438,
+
+#111
+
 );
 
 }
 
 
 
-/* SKY */
-
-
-.sky {
-
-position:absolute;
-
-top:60px;
-
-width:100%;
-
-text-align:center;
-
-font-size:120px;
-
-opacity:.2;
-
-animation:cloudMove 20s infinite alternate;
-
-}
-
-
-
-/* DEPTH LAYERS */
-
-
-.farTrees {
-
-position:absolute;
-
-bottom:230px;
-
-width:120%;
-
-left:-10%;
-
-font-size:90px;
-
-opacity:.25;
-
-animation:farMove 20s linear infinite;
-
-}
-
-
-
-.nearTrees {
-
-position:absolute;
-
-bottom:180px;
-
-width:150%;
-
-left:-20%;
-
-font-size:120px;
-
-opacity:.45;
-
-animation:nearMove 8s linear infinite;
-
-}
-
-
-
-
-/* ROAD */
-
-
-.road {
+.ground {
 
 position:absolute;
 
@@ -208,118 +343,42 @@ bottom:0;
 
 height:180px;
 
-width:150%;
+width:100%;
 
-left:-25%;
-
-background:
-
-repeating-linear-gradient(
-
-90deg,
-
-#222,
-
-#222 90px,
-
-#111 90px,
-
-#111 100px
-
-);
-
-animation:roadMove 1.5s linear infinite;
+background:#222;
 
 }
 
 
 
-
-/* CAMERA */
-
-
-.camera {
+.walker {
 
 position:absolute;
 
-left:50%;
-
 bottom:180px;
 
-transition:all 6s ease;
+left:50%;
+
+transform:translateX(-50%);
+
+animation:walk 2s infinite;
 
 }
 
 
 
-.camera.wide {
-
-transform:
-
-translateX(-50%)
-
-scale(.7);
-
-}
-
-
-
-.camera.follow {
-
-transform:
-
-translateX(-50%)
-
-scale(1);
-
-}
-
-
-
-.camera.reveal {
-
-transform:
-
-translateX(-50%)
-
-translateY(-40px)
-
-scale(1.2);
-
-}
-
-
-
-/* CHARACTER */
-
-
-.traveler {
-
-width:90px;
-
-height:200px;
-
-animation:walk 1.5s infinite;
-
-}
 
 
 
 .head {
 
-position:absolute;
-
-top:25px;
-
-left:30px;
-
 width:40px;
 
 height:40px;
 
-border-radius:50%;
-
 background:#8b5a3c;
+
+border-radius:50%;
 
 }
 
@@ -327,31 +386,23 @@ background:#8b5a3c;
 
 .hair {
 
-position:absolute;
-
-top:15px;
-
-left:25px;
-
 width:50px;
 
-height:20px;
+height:18px;
 
 background:#111;
 
 border-radius:20px;
 
+margin-left:-5px;
+
 }
 
 
 
+
+
 .body {
-
-position:absolute;
-
-top:70px;
-
-left:15px;
 
 width:65px;
 
@@ -363,37 +414,17 @@ border-radius:20px;
 
 display:flex;
 
-justify-content:center;
-
 align-items:center;
 
-}
-
-
-
-.legs {
-
-position:absolute;
-
-top:145px;
-
-left:35px;
-
-height:55px;
-
-width:20px;
-
-border-left:8px solid #111;
-
-border-right:8px solid #111;
+justify-content:center;
 
 }
+
 
 
 
 
 @keyframes walk {
-
 
 0% {
 
@@ -401,13 +432,11 @@ transform:translateY(0);
 
 }
 
-
 50% {
 
 transform:translateY(-10px);
 
 }
-
 
 100% {
 
@@ -415,94 +444,48 @@ transform:translateY(0);
 
 }
 
+}
+
+
+
+@keyframes rewind {
+
+
+0% {
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+
+100% {
+
+transform:scale(2);
+
+opacity:0;
+
+}
+
 
 }
 
 
 
-
-@keyframes roadMove {
-
+@keyframes clouds {
 
 from {
 
-transform:translateY(0);
+transform:translateX(-40px);
 
 }
-
 
 to {
 
-transform:translateY(120px);
+transform:translateX(40px);
 
 }
-
-
-}
-
-
-
-
-@keyframes farMove {
-
-
-from {
-
-transform:translateX(0);
-
-}
-
-
-to {
-
-transform:translateX(-100px);
-
-}
-
-
-}
-
-
-
-
-@keyframes nearMove {
-
-
-from {
-
-transform:translateX(0);
-
-}
-
-
-to {
-
-transform:translateX(-250px);
-
-}
-
-
-}
-
-
-
-
-@keyframes cloudMove {
-
-
-from {
-
-transform:translateX(-50px);
-
-}
-
-
-to {
-
-transform:translateX(50px);
-
-}
-
 
 }
 
@@ -512,7 +495,7 @@ transform:translateX(50px);
 
 
 
-    </section>
+    </main>
 
   );
 
