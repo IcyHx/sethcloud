@@ -2,12 +2,9 @@
 
 import { useEffect, useState } from "react";
 
-
 export default function Journey() {
 
-
   const [scene, setScene] = useState(0);
-
 
 
   useEffect(() => {
@@ -16,7 +13,7 @@ export default function Journey() {
 
       setScene((current) => {
 
-        if (current === 4) {
+        if (current === 5) {
           return 0;
         }
 
@@ -24,215 +21,115 @@ export default function Journey() {
 
       });
 
-    }, 7000);
+    }, 9000);
 
 
     return () => clearInterval(timer);
-
 
   }, []);
 
 
 
-  const scenes = [
+  const worlds = [
 
     {
-
-      name:"Origin",
-
-      sky:"#182438",
-
-      ground:"#171717",
-
-      environment:"🌅"
-
+      sky:"#162235",
+      ground:"#111",
+      effect:"🌅"
     },
 
-
     {
-
-      name:"Wilderness",
-
-      sky:"#10251b",
-
-      ground:"#091209",
-
-      environment:"🌲"
-
+      sky:"#102318",
+      ground:"#071007",
+      effect:"🌲"
     },
 
-
     {
-
-      name:"Storm",
-
-      sky:"#20252d",
-
-      ground:"#080808",
-
-      environment:"🌧️"
-
+      sky:"#30333a",
+      ground:"#111",
+      effect:"🌧️"
     },
 
-
     {
-
-      name:"Crossing",
-
-      sky:"#12344a",
-
-      ground:"#06131c",
-
-      environment:"🌊"
-
+      sky:"#123047",
+      ground:"#06121c",
+      effect:"🌊"
     },
 
-
     {
-
-      name:"Expansion",
-
       sky:"#171717",
-
       ground:"#050505",
+      effect:"🏙️"
+    },
 
-      environment:"🏙️"
-
+    {
+      sky:"#4b5563",
+      ground:"#111827",
+      effect:"☁️"
     }
-
 
   ];
 
 
 
-  const current = scenes[scene];
+  const world = worlds[scene];
 
 
 
   return (
 
-
     <section
-
+      className="world"
       style={{
-
-        height:"100vh",
-
-        overflow:"hidden",
-
-        position:"relative",
-
         background:
-        `linear-gradient(${current.sky},${current.ground})`,
-
-        transition:"background 3s ease"
-
+        `linear-gradient(${world.sky},${world.ground})`
       }}
-
     >
 
 
+      {/* Sky Layer */}
 
-      {/* Environment */}
-
-      <div
-
-      style={{
-
-        position:"absolute",
-
-        top:"70px",
-
-        width:"100%",
-
-        textAlign:"center",
-
-        fontSize:"120px",
-
-        opacity:.35,
-
-        transition:"3s"
-
-      }}
-
-      >
-
-        {current.environment}
-
+      <div className="skyEffect">
+        {world.effect}
       </div>
 
 
 
+      {/* Background Terrain */}
 
-
-      {/* Distant Landscape */}
-
-      <div
-
-      style={{
-
-        position:"absolute",
-
-        bottom:"190px",
-
-        width:"140%",
-
-        left:"-20%",
-
-        height:"150px",
-
-        background:
-
-        "linear-gradient(transparent,#000)",
-
-        animation:"landscape 12s infinite alternate"
-
-      }}
-
-      />
+      <div className="backgroundTerrain"></div>
 
 
 
-
-
-      {/* Traveler */}
-
-      <div className="traveler">
-
-
-        <div className="head"></div>
-
-
-        <div className="hair"></div>
-
-
-        <div className="hoodie">
-
-          ☁️
-
-        </div>
-
-
-        <div className="legs"></div>
-
-
-      </div>
-
-
-
-
-
-      {/* Road */}
+      {/* Foreground Road */}
 
       <div className="road"></div>
 
 
 
+      {/* Traveler */}
+
+      <div className="camera">
+
+        <div className="traveler">
 
 
-      <div className="sceneName">
+          <div className="hair"></div>
 
-        {current.name}
+          <div className="head"></div>
+
+
+          <div className="hoodie">
+
+            ☁️
+
+          </div>
+
+
+          <div className="legs"></div>
+
+
+        </div>
 
       </div>
 
@@ -240,141 +137,77 @@ export default function Journey() {
 
 
 
-<style jsx>{`
+      <style jsx>{`
 
 
 
-.traveler {
+.world {
 
+height:100vh;
 
-position:absolute;
+width:100%;
 
-bottom:170px;
+overflow:hidden;
 
-left:50%;
+position:relative;
 
-transform:translateX(-50%);
-
-width:90px;
-
-height:180px;
-
-animation:walk 2s infinite;
-
+transition:background 3s ease;
 
 }
 
 
 
-
-.head {
-
+.skyEffect {
 
 position:absolute;
 
-top:10px;
+top:80px;
 
-left:30px;
+width:100%;
 
-width:35px;
+text-align:center;
 
-height:35px;
+font-size:120px;
 
-border-radius:50%;
+opacity:.25;
 
-background:#8b5a3c;
-
+animation:float 8s infinite alternate;
 
 }
 
 
 
-.hair {
-
-
-position:absolute;
-
-top:2px;
-
-left:25px;
-
-width:45px;
-
-height:18px;
-
-background:#111;
-
-border-radius:20px;
-
-
-}
-
-
-
-.hoodie {
-
+.backgroundTerrain {
 
 position:absolute;
 
-top:55px;
+bottom:150px;
 
-left:15px;
+width:140%;
 
-width:60px;
+height:200px;
 
-height:70px;
+left:-20%;
 
-background:#202020;
+background:rgba(0,0,0,.35);
 
-border-radius:20px;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
+animation:terrainMove 15s infinite alternate;
 
 }
-
-
-
-.legs {
-
-
-position:absolute;
-
-top:125px;
-
-left:30px;
-
-width:30px;
-
-height:55px;
-
-border-left:8px solid #111;
-
-border-right:8px solid #111;
-
-
-}
-
 
 
 
 .road {
 
-
 position:absolute;
 
 bottom:0;
 
-width:130%;
+width:140%;
 
-left:-15%;
+left:-20%;
 
-height:170px;
-
+height:180px;
 
 background:
 
@@ -395,103 +228,215 @@ repeating-linear-gradient(
 
 animation:roadMove 2s linear infinite;
 
-
 }
 
 
 
-
-
-.sceneName {
-
+.camera {
 
 position:absolute;
 
-bottom:35px;
+left:50%;
 
-width:100%;
+bottom:180px;
 
-text-align:center;
-
-color:white;
-
-font-size:20px;
-
-opacity:.6;
-
+animation:cameraMove 8s infinite alternate;
 
 }
 
+
+
+.traveler {
+
+position:relative;
+
+width:90px;
+
+height:190px;
+
+animation:walk 2s infinite;
+
+}
+
+
+
+.head {
+
+position:absolute;
+
+top:15px;
+
+left:30px;
+
+height:38px;
+
+width:38px;
+
+background:#8b5a3c;
+
+border-radius:50%;
+
+}
+
+
+
+.hair {
+
+position:absolute;
+
+top:5px;
+
+left:25px;
+
+height:20px;
+
+width:48px;
+
+background:#111;
+
+border-radius:20px;
+
+}
+
+
+
+.hoodie {
+
+position:absolute;
+
+top:65px;
+
+left:15px;
+
+height:70px;
+
+width:60px;
+
+background:#222;
+
+border-radius:20px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+}
+
+
+
+.legs {
+
+position:absolute;
+
+top:135px;
+
+left:30px;
+
+height:55px;
+
+width:30px;
+
+border-left:8px solid #111;
+
+border-right:8px solid #111;
+
+}
+
+
+
+@keyframes cameraMove {
+
+from {
+
+transform:translateX(-40px) scale(1);
+
+}
+
+to {
+
+transform:translateX(40px) scale(1.08);
+
+}
+
+}
 
 
 
 @keyframes walk {
 
-
-0%{
-
-transform:translateX(-55%) translateY(0);
-
-}
-
-
-50%{
-
-transform:translateX(-45%) translateY(-8px);
-
-}
-
-
-100%{
-
-transform:translateX(-55%) translateY(0);
-
-}
-
-
-}
-
-
-
-
-@keyframes roadMove {
-
-
-from{
+0% {
 
 transform:translateY(0);
 
 }
 
+50% {
 
-to{
+transform:translateY(-8px);
+
+}
+
+100% {
+
+transform:translateY(0);
+
+}
+
+}
+
+
+
+@keyframes roadMove {
+
+from {
+
+transform:translateY(0);
+
+}
+
+to {
 
 transform:translateY(100px);
 
 }
 
-
 }
 
 
 
+@keyframes terrainMove {
 
-@keyframes landscape {
-
-
-from{
+from {
 
 transform:translateX(0);
 
 }
 
+to {
 
-to{
-
-transform:translateX(-80px);
+transform:translateX(-120px);
 
 }
 
+}
+
+
+
+@keyframes float {
+
+from {
+
+transform:translateY(0);
+
+}
+
+to {
+
+transform:translateY(-20px);
+
+}
 
 }
 
@@ -500,9 +445,7 @@ transform:translateX(-80px);
 `}</style>
 
 
-
     </section>
-
 
   );
 
