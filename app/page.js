@@ -44,6 +44,36 @@ export default function Home() {
           }}
         >
 
+          {/* Sky Atmosphere */}
+
+          <div
+            style={{
+              position:"absolute",
+              top:"80px",
+              left:"15%",
+              fontSize:"80px",
+              opacity:.15,
+              animation:"cloudMove 12s infinite alternate"
+            }}
+          >
+            ☁️
+          </div>
+
+
+          <div
+            style={{
+              position:"absolute",
+              top:"200px",
+              right:"15%",
+              fontSize:"100px",
+              opacity:.1,
+              animation:"cloudMove 18s infinite alternate"
+            }}
+          >
+            ☁️
+          </div>
+
+
           {/* Moving Road */}
 
           <div
@@ -113,6 +143,7 @@ export default function Home() {
 
 
       ) : (
+
 
         <section
           style={{
@@ -191,60 +222,74 @@ export default function Home() {
           </div>
 
 
-          <style jsx>{`
-
-          @keyframes moveRoad {
-
-            from {
-              transform:translateY(0);
-            }
-
-            to {
-              transform:translateY(80px);
-            }
-
-          }
-
-
-          @keyframes walk {
-
-            0% {
-              transform:translateX(-25px);
-            }
-
-            50% {
-              transform:translateX(25px);
-            }
-
-            100% {
-              transform:translateX(-25px);
-            }
-
-          }
-
-
-          @keyframes float {
-
-            0% {
-              transform:translateY(0);
-            }
-
-            50% {
-              transform:translateY(-15px);
-            }
-
-            100% {
-              transform:translateY(0);
-            }
-
-          }
-
-          `}</style>
-
-
         </section>
 
       )}
+
+
+      <style jsx>{`
+
+      @keyframes moveRoad {
+
+        from {
+          transform:translateY(0);
+        }
+
+        to {
+          transform:translateY(80px);
+        }
+
+      }
+
+
+      @keyframes cloudMove {
+
+        from {
+          transform:translateX(-40px);
+        }
+
+        to {
+          transform:translateX(40px);
+        }
+
+      }
+
+
+      @keyframes walk {
+
+        0% {
+          transform:translateX(-25px);
+        }
+
+        50% {
+          transform:translateX(25px);
+        }
+
+        100% {
+          transform:translateX(-25px);
+        }
+
+      }
+
+
+      @keyframes float {
+
+        0% {
+          transform:translateY(0);
+        }
+
+        50% {
+          transform:translateY(-15px);
+        }
+
+        100% {
+          transform:translateY(0);
+        }
+
+      }
+
+      `}</style>
+
 
     </main>
 
