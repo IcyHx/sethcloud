@@ -5,39 +5,40 @@ import { useState } from "react";
 export default function Home() {
 
   const [scores, setScores] = useState({
-    Build: 0,
-    Adapt: 0,
-    Drive: 0
+    Build:0,
+    Adapt:0,
+    Drive:0
   });
 
-  const [step, setStep] = useState(0);
-  const [result, setResult] = useState("");
+  const [step,setStep] = useState(0);
+  const [result,setResult] = useState("");
+
 
   const questions = [
     {
-      question: "The road is blocked. What do you do?",
-      answers: [
-        { text: "Create a new solution", type: "Build" },
-        { text: "Find another route", type: "Adapt" },
-        { text: "Push forward immediately", type: "Drive" }
+      question:"The road disappears into unknown terrain. What do you do?",
+      answers:[
+        {text:"Build a new path 🌉", type:"Build"},
+        {text:"Study the terrain 🧭", type:"Adapt"},
+        {text:"Move forward 🚙", type:"Drive"}
       ]
     },
 
     {
-      question: "A plan fails. What happens next?",
-      answers: [
-        { text: "Improve the system", type: "Build" },
-        { text: "Change the strategy", type: "Adapt" },
-        { text: "Take action quickly", type: "Drive" }
+      question:"Your vehicle struggles. What is your response?",
+      answers:[
+        {text:"Upgrade the system 🌉", type:"Build"},
+        {text:"Change the strategy 🧭", type:"Adapt"},
+        {text:"Push through 🚙", type:"Drive"}
       ]
     },
 
     {
-      question: "A new opportunity appears. How do you respond?",
-      answers: [
-        { text: "Build something around it", type: "Build" },
-        { text: "Study the situation first", type: "Adapt" },
-        { text: "Move before others do", type: "Drive" }
+      question:"You discover a new opportunity.",
+      answers:[
+        {text:"Create something from it 🌉", type:"Build"},
+        {text:"Analyze the opportunity 🧭", type:"Adapt"},
+        {text:"Take action immediately 🚙", type:"Drive"}
       ]
     }
   ];
@@ -45,240 +46,234 @@ export default function Home() {
 
   const profiles = {
 
-    Cloud: {
-      name: "THE CLOUD MINDSET ☁️",
-      role: "The Complete Road",
-      strength: "You create, adapt, and execute. You understand different environments require different approaches.",
-      growth: "Your next level is balance — knowing when to build, change, and move.",
-      advice: "The best builders do not control the road. They master the journey."
+    Cloud:{
+      name:"THE CLOUD MINDSET ☁️",
+      role:"The Complete Road",
+      terrain:"🌎 Every Environment",
+      mission:"Master every road.",
+      message:"You create, adapt, and move forward."
     },
 
-    Founder: {
-      name: "THE FOUNDER 🏢",
-      role: "The Execution Builder",
-      strength: "You turn ideas into action and create momentum.",
-      growth: "Your next level is building systems that do not depend on you doing everything.",
-      advice: "Vision needs structure to become reality."
+    Founder:{
+      name:"THE FOUNDER 🏢",
+      role:"The Execution Builder",
+      terrain:"🏙️ Expanding City",
+      mission:"Build your empire.",
+      message:"Ideas become reality through action."
     },
 
-    Explorer: {
-      name: "THE EXPLORER 🌎",
-      role: "The Adaptive Driver",
-      strength: "You move quickly while learning from every environment.",
-      growth: "Your next level is choosing a direction and mastering it.",
-      advice: "Movement creates opportunity."
+    Explorer:{
+      name:"THE EXPLORER 🌿",
+      role:"The Adaptive Driver",
+      terrain:"🌲 Unknown Wilderness",
+      mission:"Choose your vehicle.",
+      message:"You learn by moving through uncertainty."
     },
 
-    Architect: {
-      name: "THE ARCHITECT 🏗️",
-      role: "The Strategic Creator",
-      strength: "You design solutions that can survive change.",
-      growth: "Your next level is execution.",
-      advice: "A blueprint becomes powerful when someone builds it."
+    Architect:{
+      name:"THE ARCHITECT 🏗️",
+      role:"The Strategic Creator",
+      terrain:"🏗️ Construction Zone",
+      mission:"Create the blueprint.",
+      message:"Great visions need strong foundations."
     },
 
-    Build: {
-      name: "THE BUILDER 🌉",
-      role: "The Creator",
-      strength: "You turn ideas into something real.",
-      growth: "Your next level is patience and stronger systems.",
-      advice: "A strong foundation creates a stronger future."
+    Build:{
+      name:"THE BUILDER 🌉",
+      role:"The Creator",
+      terrain:"🛠️ New Ground",
+      mission:"Create the bridge.",
+      message:"You turn ideas into reality."
     },
 
-    Adapt: {
-      name: "THE NAVIGATOR 🧭",
-      role: "The Adaptive Mind",
-      strength: "You read situations and adjust quickly.",
-      growth: "Your next level is commitment and confidence.",
-      advice: "The road changes. Your vision stays."
+    Adapt:{
+      name:"THE NAVIGATOR 🧭",
+      role:"The Adaptive Mind",
+      terrain:"🌲 Changing Terrain",
+      mission:"Find the safest route.",
+      message:"You understand the environment."
     },
 
-    Drive: {
-      name: "THE DRIVER 🚙",
-      role: "The Momentum Builder",
-      strength: "You create movement when others hesitate.",
-      growth: "Your next level is strategy and timing.",
-      advice: "Speed creates motion. Direction creates success."
+    Drive:{
+      name:"THE DRIVER 🚙",
+      role:"The Momentum Builder",
+      terrain:"🛣️ Open Highway",
+      mission:"Keep moving forward.",
+      message:"You create momentum."
     }
 
   };
 
 
-  function choose(type) {
+  function choose(type){
 
-    const updated = {
+    const updated={
       ...scores,
-      [type]: scores[type] + 1
+      [type]:scores[type]+1
     };
+
 
     setScores(updated);
 
 
-    if (step < questions.length - 1) {
+    if(step < questions.length-1){
 
-      setStep(step + 1);
+      setStep(step+1);
 
     } else {
 
-      const build = updated.Build;
-      const adapt = updated.Adapt;
-      const drive = updated.Drive;
+      const build=updated.Build;
+      const adapt=updated.Adapt;
+      const drive=updated.Drive;
 
-      let profile = "Drive";
+      let profile="Drive";
 
-      if (build > 0 && adapt > 0 && drive > 0) {
-        profile = "Cloud";
-      }
 
-      else if (build > 0 && drive > 0) {
-        profile = "Founder";
-      }
+      if(build>0 && adapt>0 && drive>0)
+      profile="Cloud";
 
-      else if (adapt > 0 && drive > 0) {
-        profile = "Explorer";
-      }
+      else if(build>0 && drive>0)
+      profile="Founder";
 
-      else if (build > 0 && adapt > 0) {
-        profile = "Architect";
-      }
+      else if(adapt>0 && drive>0)
+      profile="Explorer";
 
-      else if (build > 0) {
-        profile = "Build";
-      }
+      else if(build>0 && adapt>0)
+      profile="Architect";
 
-      else if (adapt > 0) {
-        profile = "Adapt";
-      }
+      else if(build>0)
+      profile="Build";
+
+      else if(adapt>0)
+      profile="Adapt";
+
 
       setResult(profile);
+
     }
+
   }
 
 
   return (
 
     <main style={{
-      minHeight: "100vh",
-      background: "#050505",
-      color: "white",
-      padding: "50px",
-      fontFamily: "Arial"
+      minHeight:"100vh",
+      background:"#050505",
+      color:"white",
+      padding:"50px",
+      fontFamily:"Arial"
     }}>
 
-      <h1 style={{
-        letterSpacing: "4px"
-      }}>
-        SETH CLOUD
-      </h1>
+
+    <h1 style={{letterSpacing:"5px"}}>
+      SETH CLOUD
+    </h1>
 
 
-      {!result ? (
+    {!result ? (
 
-        <section style={{
-          marginTop: "80px",
-          textAlign: "center"
-        }}>
-
-          <h2>
-            🤖 Road Buddy
-          </h2>
-
-          <p>
-            Discover your current road style.
-          </p>
+    <section style={{
+      marginTop:"80px",
+      textAlign:"center"
+    }}>
 
 
-          <h3>
-            {questions[step].question}
-          </h3>
+    <h2>
+      🤖 Road Buddy
+    </h2>
 
 
-          {questions[step].answers.map((answer) => (
-
-            <button
-              key={answer.type}
-              onClick={() => choose(answer.type)}
-              style={{
-                display: "block",
-                margin: "20px auto",
-                padding: "15px 35px",
-                cursor: "pointer"
-              }}
-            >
-              {answer.text}
-
-            </button>
-
-          ))}
-
-        </section>
+    <h3>
+      {questions[step].question}
+    </h3>
 
 
-      ) : (
+    {questions[step].answers.map(answer=>(
 
-        <section style={{
-          marginTop: "70px",
-          maxWidth: "700px",
-          marginLeft: "auto",
-          marginRight: "auto",
-          border: "1px solid #333",
-          borderRadius: "30px",
-          padding: "45px",
-          textAlign: "center"
-        }}>
+      <button
+      key={answer.type}
+      onClick={()=>choose(answer.type)}
+      style={{
+        display:"block",
+        margin:"20px auto",
+        padding:"15px 40px"
+      }}
+      >
 
+      {answer.text}
 
-          <h2>
-            🤖 ROAD BUDDY PROFILE UNLOCKED
-          </h2>
+      </button>
 
-
-          <h1>
-            {profiles[result].name}
-          </h1>
+    ))}
 
 
-          <h3>
-            {profiles[result].role}
-          </h3>
+    </section>
 
 
-          <hr />
+    ):(
 
 
-          <h3>
-            Your Strength
-          </h3>
-
-          <p>
-            {profiles[result].strength}
-          </p>
-
-
-          <h3>
-            Your Growth Challenge
-          </h3>
-
-          <p>
-            {profiles[result].growth}
-          </p>
+    <section style={{
+      marginTop:"70px",
+      maxWidth:"700px",
+      marginLeft:"auto",
+      marginRight:"auto",
+      border:"1px solid #333",
+      borderRadius:"35px",
+      padding:"50px",
+      textAlign:"center"
+    }}>
 
 
-          <h3>
-            Road Buddy Advice
-          </h3>
-
-          <p>
-            "{profiles[result].advice}"
-          </p>
+    <h2>
+      🤖 ROAD BUDDY CHECKPOINT
+    </h2>
 
 
-        </section>
+    <h1>
+      {profiles[result].name}
+    </h1>
 
-      )}
+
+    <h3>
+      {profiles[result].role}
+    </h3>
+
+
+    <hr/>
+
+
+    <p>
+      Current Terrain:
+      <br/>
+      {profiles[result].terrain}
+    </p>
+
+
+    <p>
+      Road Buddy:
+      <br/>
+      "{profiles[result].message}"
+    </p>
+
+
+    <h3>
+      NEXT MISSION
+    </h3>
+
+    <p>
+      {profiles[result].mission}
+    </p>
+
+
+    </section>
+
+    )}
 
 
     </main>
 
   );
+
 }
