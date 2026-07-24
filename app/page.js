@@ -7,11 +7,13 @@ export default function Home() {
   const [entered, setEntered] = useState(false);
 
   useEffect(() => {
+
     const timer = setTimeout(() => {
       setEntered(true);
     }, 5000);
 
     return () => clearTimeout(timer);
+
   }, []);
 
 
@@ -20,7 +22,7 @@ export default function Home() {
     <main
       style={{
         minHeight:"100vh",
-        background:"linear-gradient(#050505,#111827)",
+        background:"linear-gradient(#050505,#162015)",
         color:"white",
         fontFamily:"Arial",
         overflow:"hidden"
@@ -41,7 +43,12 @@ export default function Home() {
           }}
         >
 
-          {/* Clouds */}
+          {/* Fog */}
+
+          <div className="fog"></div>
+
+
+          {/* Sky Clouds */}
 
           <div className="cloud cloudOne">
             ☁️
@@ -49,6 +56,19 @@ export default function Home() {
 
           <div className="cloud cloudTwo">
             ☁️
+          </div>
+
+
+          {/* Forest Background */}
+
+          <div className="forest">
+
+            <span>🌲</span>
+            <span>🌲</span>
+            <span>🌲</span>
+            <span>🌲</span>
+            <span>🌲</span>
+
           </div>
 
 
@@ -61,25 +81,15 @@ export default function Home() {
 
           <div className="traveler">
 
-            {/* Hair */}
-
             <div className="hair"></div>
-
-            {/* Head */}
 
             <div className="head"></div>
 
-            {/* Hoodie */}
-
             <div className="hoodie">
 
-              <span>
-                ☁
-              </span>
+              ☁️
 
             </div>
-
-            {/* Legs */}
 
             <div className="legs"></div>
 
@@ -90,7 +100,7 @@ export default function Home() {
             style={{
               fontSize:"42px",
               letterSpacing:"8px",
-              zIndex:2
+              zIndex:5
             }}
           >
             EVERY PERSON HAS A ROAD
@@ -101,7 +111,7 @@ export default function Home() {
             style={{
               opacity:.75,
               fontSize:"20px",
-              zIndex:2
+              zIndex:5
             }}
           >
             Understand the terrain. Choose your direction.
@@ -139,15 +149,23 @@ export default function Home() {
           </p>
 
 
-          <div className="buttons">
+          <div>
 
-            <button>📚 Learn The Principles</button>
+            <button>
+              📚 Learn The Principles
+            </button>
 
-            <button>🛣️ Explore The Journey</button>
+            <button>
+              🛣️ Explore The Journey
+            </button>
 
-            <button>🤖 Meet Road Buddy</button>
+            <button>
+              🤖 Meet Road Buddy
+            </button>
 
-            <button>📂 View The Work</button>
+            <button>
+              📂 View The Work
+            </button>
 
           </div>
 
@@ -159,10 +177,71 @@ export default function Home() {
 
 <style jsx>{`
 
+.fog {
+
+position:absolute;
+width:100%;
+height:100%;
+
+background:
+linear-gradient(
+rgba(255,255,255,.04),
+transparent
+);
+
+animation:fogMove 8s infinite alternate;
+
+}
+
+
+.cloud {
+
+position:absolute;
+font-size:90px;
+opacity:.12;
+
+}
+
+
+.cloudOne {
+
+top:80px;
+left:15%;
+animation:cloudMove 12s infinite alternate;
+
+}
+
+
+.cloudTwo {
+
+top:180px;
+right:15%;
+animation:cloudMove 18s infinite alternate;
+
+}
+
+
+.forest {
+
+position:absolute;
+bottom:130px;
+width:100%;
+display:flex;
+justify-content:space-around;
+
+font-size:90px;
+opacity:.25;
+
+z-index:1;
+
+}
+
+
 .road {
 
 position:absolute;
 bottom:0;
+
 width:100%;
 height:160px;
 
@@ -180,38 +259,12 @@ animation:roadMove 4s linear infinite;
 }
 
 
-.cloud {
-
-position:absolute;
-opacity:.15;
-font-size:90px;
-
-}
-
-
-.cloudOne {
-
-top:80px;
-left:15%;
-animation:cloudMove 12s infinite alternate;
-
-}
-
-
-.cloudTwo {
-
-top:220px;
-right:15%;
-animation:cloudMove 18s infinite alternate;
-
-}
-
-
 .traveler {
 
 position:relative;
 width:90px;
 height:180px;
+
 z-index:3;
 
 animation:walk 3s infinite;
@@ -222,6 +275,7 @@ animation:walk 3s infinite;
 .head {
 
 position:absolute;
+
 top:25px;
 left:30px;
 
@@ -229,6 +283,7 @@ width:35px;
 height:35px;
 
 border-radius:50%;
+
 background:#8b5a3c;
 
 }
@@ -237,6 +292,7 @@ background:#8b5a3c;
 .hair {
 
 position:absolute;
+
 top:15px;
 left:25px;
 
@@ -253,6 +309,7 @@ border-radius:20px;
 .hoodie {
 
 position:absolute;
+
 top:65px;
 left:15px;
 
@@ -264,10 +321,8 @@ background:#222;
 border-radius:15px;
 
 display:flex;
-align-items:center;
 justify-content:center;
-
-font-size:22px;
+align-items:center;
 
 }
 
@@ -275,6 +330,7 @@ font-size:22px;
 .legs {
 
 position:absolute;
+
 top:135px;
 left:32px;
 
@@ -290,9 +346,11 @@ border-right:8px solid #222;
 button {
 
 padding:18px;
+
 margin:10px;
 
 background:#111;
+
 color:white;
 
 border:1px solid #444;
@@ -347,10 +405,24 @@ transform:translateY(80px);
 }
 
 
+@keyframes fogMove {
+
+from {
+opacity:.2;
+}
+
+to {
+opacity:.5;
+}
+
+}
+
+
 `}</style>
 
 
     </main>
 
   );
+
 }
