@@ -7,11 +7,13 @@ export default function Home() {
   const [entered, setEntered] = useState(false);
 
   useEffect(() => {
+
     const timer = setTimeout(() => {
       setEntered(true);
     }, 5000);
 
     return () => clearTimeout(timer);
+
   }, []);
 
 
@@ -20,7 +22,7 @@ export default function Home() {
     <main
       style={{
         minHeight:"100vh",
-        background:"#050505",
+        background:"linear-gradient(#050505,#111827)",
         color:"white",
         fontFamily:"Arial",
         overflow:"hidden"
@@ -36,13 +38,32 @@ export default function Home() {
             flexDirection:"column",
             justifyContent:"center",
             alignItems:"center",
-            textAlign:"center"
+            textAlign:"center",
+            position:"relative",
+            overflow:"hidden"
           }}
         >
 
+          {/* Moving Road */}
+
           <div
             style={{
-              fontSize:"60px",
+              position:"absolute",
+              bottom:"0",
+              width:"100%",
+              height:"180px",
+              background:
+              "repeating-linear-gradient(90deg, transparent, transparent 80px, #333 80px, #333 85px)",
+              animation:"moveRoad 4s linear infinite"
+            }}
+          />
+
+
+          {/* Cloud Symbol */}
+
+          <div
+            style={{
+              fontSize:"70px",
               marginBottom:"40px",
               animation:"float 3s infinite"
             }}
@@ -53,8 +74,9 @@ export default function Home() {
 
           <h1
             style={{
-              fontSize:"40px",
-              letterSpacing:"8px"
+              fontSize:"42px",
+              letterSpacing:"8px",
+              zIndex:2
             }}
           >
             EVERY PERSON HAS A ROAD
@@ -64,7 +86,8 @@ export default function Home() {
           <p
             style={{
               fontSize:"20px",
-              opacity:.7
+              opacity:.75,
+              zIndex:2
             }}
           >
             Understand the terrain. Choose your direction.
@@ -75,6 +98,7 @@ export default function Home() {
 
 
       ) : (
+
 
         <section
           style={{
@@ -95,7 +119,7 @@ export default function Home() {
 
           <p
             style={{
-              fontSize:"24px",
+              fontSize:"26px",
               marginBottom:"50px"
             }}
           >
@@ -112,23 +136,30 @@ export default function Home() {
             }}
           >
 
-
-            <button>
+            <button
+            style={buttonStyle}
+            >
               📚 Learn The Principles
             </button>
 
 
-            <button>
+            <button
+            style={buttonStyle}
+            >
               🛣️ Explore The Journey
             </button>
 
 
-            <button>
+            <button
+            style={buttonStyle}
+            >
               🤖 Meet Road Buddy
             </button>
 
 
-            <button>
+            <button
+            style={buttonStyle}
+            >
               📂 View The Work
             </button>
 
@@ -139,19 +170,53 @@ export default function Home() {
           <div
             style={{
               marginTop:"100px",
-              opacity:.5
+              opacity:.6
             }}
           >
 
-            <h3>
+            <h2>
               THE ROAD CONTINUES
-            </h3>
+            </h2>
 
             <p>
               Every destination begins with a decision.
             </p>
 
           </div>
+
+
+          <style jsx>{`
+
+          @keyframes moveRoad {
+
+            from {
+              transform:translateY(0);
+            }
+
+            to {
+              transform:translateY(80px);
+            }
+
+          }
+
+
+          @keyframes float {
+
+            0% {
+              transform:translateY(0);
+            }
+
+            50% {
+              transform:translateY(-15px);
+            }
+
+            100% {
+              transform:translateY(0);
+            }
+
+          }
+
+          `}</style>
 
 
         </section>
@@ -162,3 +227,16 @@ export default function Home() {
 
   );
 }
+
+
+const buttonStyle = {
+
+  padding:"18px",
+  fontSize:"18px",
+  cursor:"pointer",
+  borderRadius:"12px",
+  background:"#111",
+  color:"white",
+  border:"1px solid #444"
+
+};
