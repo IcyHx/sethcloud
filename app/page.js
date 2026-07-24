@@ -12,6 +12,7 @@ export default function Home() {
 
   const [step,setStep] = useState(0);
   const [result,setResult] = useState("");
+  const [vehicle,setVehicle] = useState("");
 
 
   const questions = [
@@ -48,58 +49,64 @@ export default function Home() {
 
     Cloud:{
       name:"THE CLOUD MINDSET ☁️",
-      role:"The Complete Road",
       terrain:"🌎 Every Environment",
-      mission:"Master every road.",
-      message:"You create, adapt, and move forward."
+      mission:"Master every road."
     },
 
     Founder:{
       name:"THE FOUNDER 🏢",
-      role:"The Execution Builder",
       terrain:"🏙️ Expanding City",
-      mission:"Build your empire.",
-      message:"Ideas become reality through action."
+      mission:"Build your empire."
     },
 
     Explorer:{
-      name:"THE EXPLORER 🌿",
-      role:"The Adaptive Driver",
+      name:"THE EXPLORER 🌎",
       terrain:"🌲 Unknown Wilderness",
-      mission:"Choose your vehicle.",
-      message:"You learn by moving through uncertainty."
+      mission:"Choose your vehicle."
     },
 
     Architect:{
       name:"THE ARCHITECT 🏗️",
-      role:"The Strategic Creator",
       terrain:"🏗️ Construction Zone",
-      mission:"Create the blueprint.",
-      message:"Great visions need strong foundations."
+      mission:"Create the blueprint."
     },
 
     Build:{
       name:"THE BUILDER 🌉",
-      role:"The Creator",
       terrain:"🛠️ New Ground",
-      mission:"Create the bridge.",
-      message:"You turn ideas into reality."
+      mission:"Create the bridge."
     },
 
     Adapt:{
       name:"THE NAVIGATOR 🧭",
-      role:"The Adaptive Mind",
       terrain:"🌲 Changing Terrain",
-      mission:"Find the safest route.",
-      message:"You understand the environment."
+      mission:"Find the route."
     },
 
     Drive:{
       name:"THE DRIVER 🚙",
-      role:"The Momentum Builder",
       terrain:"🛣️ Open Highway",
-      mission:"Keep moving forward.",
-      message:"You create momentum."
+      mission:"Keep moving."
+    }
+
+  };
+
+
+  const vehicles = {
+
+    Bike:{
+      name:"🏍️ THE AGILE PATH",
+      message:"You value speed, flexibility, and learning through experience."
+    },
+
+    Truck:{
+      name:"🚙 THE FOUNDATION PATH",
+      message:"You value preparation, reliability, and carrying bigger missions."
+    },
+
+    Future:{
+      name:"🏎️ THE VISION PATH",
+      message:"You value innovation, ambition, and creating new possibilities."
     }
 
   };
@@ -111,7 +118,6 @@ export default function Home() {
       ...scores,
       [type]:scores[type]+1
     };
-
 
     setScores(updated);
 
@@ -127,7 +133,6 @@ export default function Home() {
       const drive=updated.Drive;
 
       let profile="Drive";
-
 
       if(build>0 && adapt>0 && drive>0)
       profile="Cloud";
@@ -165,8 +170,7 @@ export default function Home() {
       fontFamily:"Arial"
     }}>
 
-
-    <h1 style={{letterSpacing:"5px"}}>
+    <h1>
       SETH CLOUD
     </h1>
 
@@ -174,15 +178,11 @@ export default function Home() {
     {!result ? (
 
     <section style={{
-      marginTop:"80px",
+      marginTop:"70px",
       textAlign:"center"
     }}>
 
-
-    <h2>
-      🤖 Road Buddy
-    </h2>
-
+    <h2>🤖 Road Buddy</h2>
 
     <h3>
       {questions[step].question}
@@ -211,38 +211,20 @@ export default function Home() {
     </section>
 
 
-    ):(
-
+    ) : !vehicle ? (
 
     <section style={{
       marginTop:"70px",
-      maxWidth:"700px",
-      marginLeft:"auto",
-      marginRight:"auto",
-      border:"1px solid #333",
-      borderRadius:"35px",
-      padding:"50px",
       textAlign:"center"
     }}>
-
 
     <h2>
       🤖 ROAD BUDDY CHECKPOINT
     </h2>
 
-
     <h1>
       {profiles[result].name}
     </h1>
-
-
-    <h3>
-      {profiles[result].role}
-    </h3>
-
-
-    <hr/>
-
 
     <p>
       Current Terrain:
@@ -250,27 +232,68 @@ export default function Home() {
       {profiles[result].terrain}
     </p>
 
+    <h3>
+      The terrain has changed.
+      Choose your vehicle.
+    </h3>
+
+
+    {Object.keys(vehicles).map(item=>(
+
+      <button
+      key={item}
+      onClick={()=>setVehicle(item)}
+      style={{
+        display:"block",
+        margin:"20px auto",
+        padding:"15px 40px"
+      }}
+      >
+
+      {vehicles[item].name}
+
+      </button>
+
+    ))}
+
+
+    </section>
+
+
+    ) : (
+
+    <section style={{
+      marginTop:"70px",
+      textAlign:"center",
+      border:"1px solid #333",
+      borderRadius:"30px",
+      padding:"40px"
+    }}>
+
+
+    <h2>
+      🚙 VEHICLE SELECTED
+    </h2>
+
+    <h1>
+      {vehicles[vehicle].name}
+    </h1>
 
     <p>
       Road Buddy:
       <br/>
-      "{profiles[result].message}"
+      "{vehicles[vehicle].message}"
     </p>
 
 
     <h3>
-      NEXT MISSION
+      Next Road Loading...
     </h3>
-
-    <p>
-      {profiles[result].mission}
-    </p>
 
 
     </section>
 
     )}
-
 
     </main>
 
