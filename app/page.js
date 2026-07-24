@@ -17,27 +17,27 @@ export default function Home() {
     {
       question: "The road is blocked. What do you do?",
       answers: [
-        { text:"Create a new solution", type:"Build" },
-        { text:"Find another route", type:"Adapt" },
-        { text:"Push forward immediately", type:"Drive" }
+        { text: "Create a new solution", type: "Build" },
+        { text: "Find another route", type: "Adapt" },
+        { text: "Push forward immediately", type: "Drive" }
       ]
     },
 
     {
       question: "A plan fails. What happens next?",
-      answers:[
-        { text:"Improve the system", type:"Build" },
-        { text:"Change the strategy", type:"Adapt" },
-        { text:"Take action quickly", type:"Drive" }
+      answers: [
+        { text: "Improve the system", type: "Build" },
+        { text: "Change the strategy", type: "Adapt" },
+        { text: "Take action quickly", type: "Drive" }
       ]
     },
 
     {
-      question:"A new opportunity appears. How do you respond?",
-      answers:[
-        { text:"Build something around it", type:"Build" },
-        { text:"Study the situation first", type:"Adapt" },
-        { text:"Move before others do", type:"Drive" }
+      question: "A new opportunity appears. How do you respond?",
+      answers: [
+        { text: "Build something around it", type: "Build" },
+        { text: "Study the situation first", type: "Adapt" },
+        { text: "Move before others do", type: "Drive" }
       ]
     }
   ];
@@ -45,34 +45,66 @@ export default function Home() {
 
   const profiles = {
 
-    Build:{
-      name:"THE BUILDER 🌉",
-      role:"The Creator",
-      strength:"You turn ideas into something real. You create solutions instead of waiting for them.",
-      growth:"Your next level is patience, consistency, and building stronger systems.",
-      advice:"A strong foundation creates a stronger future."
+    Cloud: {
+      name: "THE CLOUD MINDSET ☁️",
+      role: "The Complete Road",
+      strength: "You create, adapt, and execute. You understand different environments require different approaches.",
+      growth: "Your next level is balance — knowing when to build, change, and move.",
+      advice: "The best builders do not control the road. They master the journey."
     },
 
-    Adapt:{
-      name:"THE NAVIGATOR 🧭",
-      role:"The Adaptive Mind",
-      strength:"You read situations, adjust quickly, and find opportunities in changing environments.",
-      growth:"Your next level is commitment and trusting your decisions.",
-      advice:"The road changes. Your vision stays."
+    Founder: {
+      name: "THE FOUNDER 🏢",
+      role: "The Execution Builder",
+      strength: "You turn ideas into action and create momentum.",
+      growth: "Your next level is building systems that do not depend on you doing everything.",
+      advice: "Vision needs structure to become reality."
     },
 
-    Drive:{
-      name:"THE DRIVER 🚙",
-      role:"The Momentum Builder",
-      strength:"You create movement. You take action when others hesitate.",
-      growth:"Your next level is strategy, timing, and knowing when to slow down.",
-      advice:"Speed creates motion. Direction creates success."
+    Explorer: {
+      name: "THE EXPLORER 🌎",
+      role: "The Adaptive Driver",
+      strength: "You move quickly while learning from every environment.",
+      growth: "Your next level is choosing a direction and mastering it.",
+      advice: "Movement creates opportunity."
+    },
+
+    Architect: {
+      name: "THE ARCHITECT 🏗️",
+      role: "The Strategic Creator",
+      strength: "You design solutions that can survive change.",
+      growth: "Your next level is execution.",
+      advice: "A blueprint becomes powerful when someone builds it."
+    },
+
+    Build: {
+      name: "THE BUILDER 🌉",
+      role: "The Creator",
+      strength: "You turn ideas into something real.",
+      growth: "Your next level is patience and stronger systems.",
+      advice: "A strong foundation creates a stronger future."
+    },
+
+    Adapt: {
+      name: "THE NAVIGATOR 🧭",
+      role: "The Adaptive Mind",
+      strength: "You read situations and adjust quickly.",
+      growth: "Your next level is commitment and confidence.",
+      advice: "The road changes. Your vision stays."
+    },
+
+    Drive: {
+      name: "THE DRIVER 🚙",
+      role: "The Momentum Builder",
+      strength: "You create movement when others hesitate.",
+      growth: "Your next level is strategy and timing.",
+      advice: "Speed creates motion. Direction creates success."
     }
 
   };
 
 
-  function choose(type){
+  function choose(type) {
 
     const updated = {
       ...scores,
@@ -82,97 +114,59 @@ export default function Home() {
     setScores(updated);
 
 
-    if(step < questions.length - 1){
+    if (step < questions.length - 1) {
+
       setStep(step + 1);
-    } else {const build = updated.Build;
-const adapt = updated.Adapt;
-const drive = updated.Drive;
 
-let profile = "";
-
-if(build > 0 && adapt > 0 && drive > 0){
-  profile = "Cloud";
-}
-
-else if(build > 0 && drive > 0){
-  profile = "Founder";
-}
-
-else if(adapt > 0 && drive > 0){
-  profile = "Explorer";
-}
-
-else if(build > 0 && adapt > 0){
-  profile = "Architect";
-}
-
-else if(build > 0){
-  profile = "Build";
-}
-
-else if(adapt > 0){
-  profile = "Adapt";
-}
-
-else {
-  profile = "Drive";
-}
-
-setResult(profile);
+    } else {
 
       const build = updated.Build;
-const adapt = updated.Adapt;
-const drive = updated.Drive;
+      const adapt = updated.Adapt;
+      const drive = updated.Drive;
 
-let profile = "";
+      let profile = "Drive";
 
-if(build > 0 && adapt > 0 && drive > 0){
-  profile = "Cloud";
-}
+      if (build > 0 && adapt > 0 && drive > 0) {
+        profile = "Cloud";
+      }
 
-else if(build > 0 && drive > 0){
-  profile = "Founder";
-}
+      else if (build > 0 && drive > 0) {
+        profile = "Founder";
+      }
 
-else if(adapt > 0 && drive > 0){
-  profile = "Explorer";
-}
+      else if (adapt > 0 && drive > 0) {
+        profile = "Explorer";
+      }
 
-else if(build > 0 && adapt > 0){
-  profile = "Architect";
-}
+      else if (build > 0 && adapt > 0) {
+        profile = "Architect";
+      }
 
-else if(build > 0){
-  profile = "Builder";
-}
+      else if (build > 0) {
+        profile = "Build";
+      }
 
-else if(adapt > 0){
-  profile = "Navigator";
-}
+      else if (adapt > 0) {
+        profile = "Adapt";
+      }
 
-else {
-  profile = "Driver";
-}
-
-setResult(profile);
+      setResult(profile);
     }
-
   }
-
 
 
   return (
 
     <main style={{
-      minHeight:"100vh",
-      background:"#050505",
-      color:"white",
-      padding:"50px",
-      fontFamily:"Arial"
+      minHeight: "100vh",
+      background: "#050505",
+      color: "white",
+      padding: "50px",
+      fontFamily: "Arial"
     }}>
 
       <h1 style={{
-        letterSpacing:"4px"
+        letterSpacing: "4px"
       }}>
         SETH CLOUD
       </h1>
@@ -181,8 +175,8 @@ setResult(profile);
       {!result ? (
 
         <section style={{
-          marginTop:"80px",
-          textAlign:"center"
+          marginTop: "80px",
+          textAlign: "center"
         }}>
 
           <h2>
@@ -199,19 +193,20 @@ setResult(profile);
           </h3>
 
 
-          {questions[step].answers.map((answer)=>(
+          {questions[step].answers.map((answer) => (
 
             <button
               key={answer.type}
-              onClick={()=>choose(answer.type)}
+              onClick={() => choose(answer.type)}
               style={{
-                display:"block",
-                margin:"20px auto",
-                padding:"15px 35px",
-                cursor:"pointer"
+                display: "block",
+                margin: "20px auto",
+                padding: "15px 35px",
+                cursor: "pointer"
               }}
             >
               {answer.text}
+
             </button>
 
           ))}
@@ -222,13 +217,14 @@ setResult(profile);
       ) : (
 
         <section style={{
-          marginTop:"70px",
-          maxWidth:"700px",
-          marginLeft:"auto",
-          marginRight:"auto",
-          border:"1px solid #333",
-          borderRadius:"30px",
-          padding:"45px"
+          marginTop: "70px",
+          maxWidth: "700px",
+          marginLeft: "auto",
+          marginRight: "auto",
+          border: "1px solid #333",
+          borderRadius: "30px",
+          padding: "45px",
+          textAlign: "center"
         }}>
 
 
@@ -247,7 +243,7 @@ setResult(profile);
           </h3>
 
 
-          <hr/>
+          <hr />
 
 
           <h3>
@@ -280,6 +276,7 @@ setResult(profile);
         </section>
 
       )}
+
 
     </main>
 
