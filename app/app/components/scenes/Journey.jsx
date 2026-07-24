@@ -4,122 +4,94 @@ import { useEffect, useState } from "react";
 
 export default function Journey() {
 
-  const [scene, setScene] = useState(0);
+  const [shot, setShot] = useState("wide");
 
 
   useEffect(() => {
 
-    const timer = setInterval(() => {
+    const timer = setTimeout(() => {
 
-      setScene((current) => {
+      setShot("follow");
 
-        if (current === 5) {
-          return 0;
-        }
-
-        return current + 1;
-
-      });
-
-    }, 9000);
+    }, 5000);
 
 
-    return () => clearInterval(timer);
+    const secondTimer = setTimeout(() => {
+
+      setShot("reveal");
+
+    }, 15000);
+
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(secondTimer);
+    };
 
   }, []);
 
 
 
-  const worlds = [
-
-    {
-      sky:"#162235",
-      ground:"#111",
-      effect:"🌅"
-    },
-
-    {
-      sky:"#102318",
-      ground:"#071007",
-      effect:"🌲"
-    },
-
-    {
-      sky:"#30333a",
-      ground:"#111",
-      effect:"🌧️"
-    },
-
-    {
-      sky:"#123047",
-      ground:"#06121c",
-      effect:"🌊"
-    },
-
-    {
-      sky:"#171717",
-      ground:"#050505",
-      effect:"🏙️"
-    },
-
-    {
-      sky:"#4b5563",
-      ground:"#111827",
-      effect:"☁️"
-    }
-
-  ];
-
-
-
-  const world = worlds[scene];
-
-
-
   return (
 
-    <section
-      className="world"
-      style={{
-        background:
-        `linear-gradient(${world.sky},${world.ground})`
-      }}
-    >
+    <section className="scene">
 
 
-      {/* Sky Layer */}
+      {/* SKY */}
 
-      <div className="skyEffect">
-        {world.effect}
+      <div className="sky">
+
+        ☁️
+
       </div>
 
 
 
-      {/* Background Terrain */}
+      {/* DISTANT WORLD */}
 
-      <div className="backgroundTerrain"></div>
+      <div className="farTrees">
+
+        🌲      🌲        🌲
+
+      </div>
 
 
 
-      {/* Foreground Road */}
+      {/* CLOSER WORLD */}
+
+      <div className="nearTrees">
+
+        🌲  🌲  🌲  🌲
+
+      </div>
+
+
+
+      {/* ROAD */}
 
       <div className="road"></div>
 
 
 
-      {/* Traveler */}
+      {/* CAMERA */}
 
-      <div className="camera">
+      <div
+        className={`camera ${shot}`}
+      >
+
+
+        {/* TRAVELER */}
 
         <div className="traveler">
 
 
           <div className="hair"></div>
 
+
           <div className="head"></div>
 
 
-          <div className="hoodie">
+          <div className="body">
 
             ☁️
 
@@ -131,37 +103,41 @@ export default function Journey() {
 
         </div>
 
+
       </div>
 
 
 
+<style jsx>{`
 
 
-      <style jsx>{`
-
-
-
-.world {
+.scene {
 
 height:100vh;
-
-width:100%;
 
 overflow:hidden;
 
 position:relative;
 
-transition:background 3s ease;
+background:
+
+linear-gradient(
+#1b2b44,
+#111
+);
 
 }
 
 
 
-.skyEffect {
+/* SKY */
+
+
+.sky {
 
 position:absolute;
 
-top:80px;
+top:60px;
 
 width:100%;
 
@@ -169,32 +145,59 @@ text-align:center;
 
 font-size:120px;
 
-opacity:.25;
+opacity:.2;
 
-animation:float 8s infinite alternate;
+animation:cloudMove 20s infinite alternate;
 
 }
 
 
 
-.backgroundTerrain {
+/* DEPTH LAYERS */
+
+
+.farTrees {
 
 position:absolute;
 
-bottom:150px;
+bottom:230px;
 
-width:140%;
+width:120%;
 
-height:200px;
+left:-10%;
 
-left:-20%;
+font-size:90px;
 
-background:rgba(0,0,0,.35);
+opacity:.25;
 
-animation:terrainMove 15s infinite alternate;
+animation:farMove 20s linear infinite;
 
 }
 
+
+
+.nearTrees {
+
+position:absolute;
+
+bottom:180px;
+
+width:150%;
+
+left:-20%;
+
+font-size:120px;
+
+opacity:.45;
+
+animation:nearMove 8s linear infinite;
+
+}
+
+
+
+
+/* ROAD */
 
 
 .road {
@@ -203,11 +206,11 @@ position:absolute;
 
 bottom:0;
 
-width:140%;
-
-left:-20%;
-
 height:180px;
+
+width:150%;
+
+left:-25%;
 
 background:
 
@@ -217,19 +220,22 @@ repeating-linear-gradient(
 
 #222,
 
-#222 80px,
+#222 90px,
 
-#111 80px,
+#111 90px,
 
-#111 90px
+#111 100px
 
 );
 
-
-animation:roadMove 2s linear infinite;
+animation:roadMove 1.5s linear infinite;
 
 }
 
+
+
+
+/* CAMERA */
 
 
 .camera {
@@ -240,21 +246,60 @@ left:50%;
 
 bottom:180px;
 
-animation:cameraMove 8s infinite alternate;
+transition:all 6s ease;
 
 }
 
 
 
-.traveler {
+.camera.wide {
 
-position:relative;
+transform:
+
+translateX(-50%)
+
+scale(.7);
+
+}
+
+
+
+.camera.follow {
+
+transform:
+
+translateX(-50%)
+
+scale(1);
+
+}
+
+
+
+.camera.reveal {
+
+transform:
+
+translateX(-50%)
+
+translateY(-40px)
+
+scale(1.2);
+
+}
+
+
+
+/* CHARACTER */
+
+
+.traveler {
 
 width:90px;
 
-height:190px;
+height:200px;
 
-animation:walk 2s infinite;
+animation:walk 1.5s infinite;
 
 }
 
@@ -264,17 +309,17 @@ animation:walk 2s infinite;
 
 position:absolute;
 
-top:15px;
+top:25px;
 
 left:30px;
 
-height:38px;
+width:40px;
 
-width:38px;
-
-background:#8b5a3c;
+height:40px;
 
 border-radius:50%;
+
+background:#8b5a3c;
 
 }
 
@@ -284,13 +329,13 @@ border-radius:50%;
 
 position:absolute;
 
-top:5px;
+top:15px;
 
 left:25px;
 
-height:20px;
+width:50px;
 
-width:48px;
+height:20px;
 
 background:#111;
 
@@ -300,17 +345,17 @@ border-radius:20px;
 
 
 
-.hoodie {
+.body {
 
 position:absolute;
 
-top:65px;
+top:70px;
 
 left:15px;
 
-height:70px;
+width:65px;
 
-width:60px;
+height:80px;
 
 background:#222;
 
@@ -318,9 +363,9 @@ border-radius:20px;
 
 display:flex;
 
-align-items:center;
-
 justify-content:center;
+
+align-items:center;
 
 }
 
@@ -330,13 +375,13 @@ justify-content:center;
 
 position:absolute;
 
-top:135px;
+top:145px;
 
-left:30px;
+left:35px;
 
 height:55px;
 
-width:30px;
+width:20px;
 
 border-left:8px solid #111;
 
@@ -346,25 +391,9 @@ border-right:8px solid #111;
 
 
 
-@keyframes cameraMove {
-
-from {
-
-transform:translateX(-40px) scale(1);
-
-}
-
-to {
-
-transform:translateX(40px) scale(1.08);
-
-}
-
-}
-
-
 
 @keyframes walk {
+
 
 0% {
 
@@ -372,11 +401,13 @@ transform:translateY(0);
 
 }
 
+
 50% {
 
-transform:translateY(-8px);
+transform:translateY(-10px);
 
 }
+
 
 100% {
 
@@ -384,11 +415,14 @@ transform:translateY(0);
 
 }
 
+
 }
 
 
 
+
 @keyframes roadMove {
+
 
 from {
 
@@ -396,17 +430,21 @@ transform:translateY(0);
 
 }
 
+
 to {
 
-transform:translateY(100px);
+transform:translateY(120px);
 
 }
 
+
 }
 
 
 
-@keyframes terrainMove {
+
+@keyframes farMove {
+
 
 from {
 
@@ -414,35 +452,64 @@ transform:translateX(0);
 
 }
 
+
 to {
 
-transform:translateX(-120px);
+transform:translateX(-100px);
 
 }
 
+
 }
 
 
 
-@keyframes float {
+
+@keyframes nearMove {
+
 
 from {
 
-transform:translateY(0);
+transform:translateX(0);
 
 }
+
 
 to {
 
-transform:translateY(-20px);
+transform:translateX(-250px);
 
 }
+
+
+}
+
+
+
+
+@keyframes cloudMove {
+
+
+from {
+
+transform:translateX(-50px);
+
+}
+
+
+to {
+
+transform:translateX(50px);
+
+}
+
 
 }
 
 
 
 `}</style>
+
 
 
     </section>
