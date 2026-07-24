@@ -51,7 +51,7 @@ export default function Home() {
               position:"absolute",
               bottom:"0",
               width:"100%",
-              height:"180px",
+              height:"160px",
               background:
               "repeating-linear-gradient(90deg, transparent, transparent 80px, #333 80px, #333 85px)",
               animation:"moveRoad 4s linear infinite"
@@ -59,13 +59,28 @@ export default function Home() {
           />
 
 
+          {/* Traveler */}
+
+          <div
+            style={{
+              fontSize:"80px",
+              marginBottom:"20px",
+              animation:"walk 4s infinite",
+              zIndex:2
+            }}
+          >
+            👤
+          </div>
+
+
           {/* Cloud Symbol */}
 
           <div
             style={{
-              fontSize:"70px",
-              marginBottom:"40px",
-              animation:"float 3s infinite"
+              fontSize:"65px",
+              marginBottom:"30px",
+              animation:"float 3s infinite",
+              zIndex:2
             }}
           >
             ☁️
@@ -98,7 +113,6 @@ export default function Home() {
 
 
       ) : (
-
 
         <section
           style={{
@@ -136,30 +150,22 @@ export default function Home() {
             }}
           >
 
-            <button
-            style={buttonStyle}
-            >
+            <button style={buttonStyle}>
               📚 Learn The Principles
             </button>
 
 
-            <button
-            style={buttonStyle}
-            >
+            <button style={buttonStyle}>
               🛣️ Explore The Journey
             </button>
 
 
-            <button
-            style={buttonStyle}
-            >
+            <button style={buttonStyle}>
               🤖 Meet Road Buddy
             </button>
 
 
-            <button
-            style={buttonStyle}
-            >
+            <button style={buttonStyle}>
               📂 View The Work
             </button>
 
@@ -195,6 +201,23 @@ export default function Home() {
 
             to {
               transform:translateY(80px);
+            }
+
+          }
+
+
+          @keyframes walk {
+
+            0% {
+              transform:translateX(-25px);
+            }
+
+            50% {
+              transform:translateX(25px);
+            }
+
+            100% {
+              transform:translateX(-25px);
             }
 
           }
