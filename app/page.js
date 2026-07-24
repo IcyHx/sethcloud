@@ -2,104 +2,142 @@ export default function Home() {
   return (
     <main style={{
       minHeight: "100vh",
-      background: "linear-gradient(180deg, #050505, #111)",
+      background: "#050505",
       color: "white",
       padding: "30px 60px",
       fontFamily: "Arial, sans-serif"
     }}>
 
+      {/* Navigation */}
       <nav style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center"
+        display:"flex",
+        justifyContent:"space-between",
+        alignItems:"center"
       }}>
-        <h2 style={{letterSpacing:"3px"}}>
+        <h2 style={{
+          letterSpacing:"4px"
+        }}>
           SETH CLOUD
         </h2>
 
         <div style={{
           display:"flex",
-          gap:"30px",
+          gap:"25px",
           opacity:.8
         }}>
           <span>Home</span>
           <span>Philosophy</span>
           <span>Work</span>
           <span>Road Buddy</span>
-          <span>Contact</span>
         </div>
       </nav>
 
 
+      {/* Hero */}
       <section style={{
-        marginTop:"120px",
-        maxWidth:"800px"
+        marginTop:"100px",
+        maxWidth:"850px"
       }}>
 
         <h1 style={{
-          fontSize:"72px",
+          fontSize:"70px",
           lineHeight:"1.1",
-          letterSpacing:"4px"
+          letterSpacing:"3px"
         }}>
-          MARKETING.
+          BUILD YOUR ROAD.
           <br/>
-          SYSTEMS.
-          <br/>
-          MOMENTUM.
+          CREATE YOUR EMPIRE.
         </h1>
-
 
         <p style={{
           fontSize:"24px",
-          marginTop:"35px",
-          lineHeight:"1.6",
-          opacity:.85
+          marginTop:"30px",
+          opacity:.8
         }}>
-          Every empire starts with one decision:
-          keep moving forward.
+          Marketing. Systems. Momentum.
+          <br/>
+          Every vision starts with one step forward.
         </p>
-
-
-        <button style={{
-          marginTop:"40px",
-          padding:"18px 40px",
-          borderRadius:"40px",
-          border:"none",
-          fontSize:"18px"
-        }}>
-          Begin The Journey
-        </button>
 
       </section>
 
 
+      {/* Road Engine */}
       <section style={{
         marginTop:"100px",
-        padding:"40px",
+        padding:"45px",
         border:"1px solid #333",
-        borderRadius:"20px"
+        borderRadius:"25px"
       }}>
 
         <h2>
-          🛣️ Road Engine
+          🛣️ THE ROAD ENGINE
         </h2>
 
         <p style={{
-          fontSize:"22px"
+          opacity:.7
         }}>
-          🚶🏾 → ✓ Learn → ✓ Build → ✓ Market → ✓ Lead → 🏢
+          The journey from vision to empire.
         </p>
+
+
+        <div style={{
+          marginTop:"50px",
+          display:"flex",
+          flexDirection:"column",
+          gap:"35px",
+          fontSize:"24px"
+        }}>
+
+          <div>
+            🚶🏾 Modern Builder
+            <br/>
+            <small>Start. Learn. Create.</small>
+          </div>
+
+
+          <div>
+            ✓ BUILD
+            <br/>
+            <small>Develop skills and systems.</small>
+          </div>
+
+
+          <div>
+            ✓ MARKET
+            <br/>
+            <small>Create attention and influence.</small>
+          </div>
+
+
+          <div>
+            ✓ LEAD
+            <br/>
+            <small>Build people and businesses.</small>
+          </div>
+
+
+          <div>
+            🏢 FOUNDER
+            <br/>
+            <small>Create something bigger than yourself.</small>
+          </div>
+
+        </div>
 
       </section>
 
 
+      {/* Road Buddy */}
       <section style={{
-        marginTop:"50px"
+        marginTop:"60px",
+        padding:"30px"
       }}>
         🤖 <strong>Road Buddy</strong>
         <br/>
-        Your AI guide for the next move.
+        Your guide for the next move.
       </section>
+
 
     </main>
   );
