@@ -1,22 +1,19 @@
 export default function Home() {
   return (
     <main style={{
-      minHeight: "100vh",
-      background: "#050505",
-      color: "white",
-      padding: "30px 60px",
-      fontFamily: "Arial, sans-serif"
+      minHeight:"100vh",
+      background:"#050505",
+      color:"white",
+      padding:"40px 60px",
+      fontFamily:"Arial, sans-serif"
     }}>
 
-      {/* Navigation */}
       <nav style={{
         display:"flex",
         justifyContent:"space-between",
         alignItems:"center"
       }}>
-        <h2 style={{
-          letterSpacing:"4px"
-        }}>
+        <h2 style={{letterSpacing:"4px"}}>
           SETH CLOUD
         </h2>
 
@@ -33,51 +30,47 @@ export default function Home() {
       </nav>
 
 
-      {/* Hero */}
       <section style={{
-        marginTop:"100px",
-        maxWidth:"850px"
+        marginTop:"100px"
       }}>
 
         <h1 style={{
           fontSize:"70px",
-          lineHeight:"1.1",
-          letterSpacing:"3px"
+          lineHeight:"1.1"
         }}>
-          BUILD YOUR ROAD.
+          FROM ONE ROAD
           <br/>
-          CREATE YOUR EMPIRE.
+          TO AN EMPIRE.
         </h1>
 
         <p style={{
           fontSize:"24px",
-          marginTop:"30px",
-          opacity:.8
+          opacity:.8,
+          marginTop:"30px"
         }}>
-          Marketing. Systems. Momentum.
+          Atlanta roots.
           <br/>
-          Every vision starts with one step forward.
+          Global vision.
         </p>
 
       </section>
 
 
-      {/* Road Engine */}
       <section style={{
-        marginTop:"100px",
-        padding:"45px",
+        marginTop:"90px",
         border:"1px solid #333",
-        borderRadius:"25px"
+        borderRadius:"25px",
+        padding:"50px"
       }}>
 
         <h2>
-          🛣️ THE ROAD ENGINE
+          🛣️ ROAD ENGINE
         </h2>
 
         <p style={{
           opacity:.7
         }}>
-          The journey from vision to empire.
+          Every destination begins with a first step.
         </p>
 
 
@@ -85,57 +78,77 @@ export default function Home() {
           marginTop:"50px",
           display:"flex",
           flexDirection:"column",
-          gap:"35px",
-          fontSize:"24px"
+          gap:"45px",
+          fontSize:"25px"
         }}>
 
+
           <div>
-            🚶🏾 Modern Builder
+            🏠 STARTING POINT
             <br/>
-            <small>Start. Learn. Create.</small>
+            <small>
+              Where the vision begins.
+            </small>
           </div>
 
 
           <div>
-            ✓ BUILD
+            🚶🏾 BUILDER
             <br/>
-            <small>Develop skills and systems.</small>
+            <small>
+              Learn. Create. Improve.
+            </small>
           </div>
 
 
           <div>
-            ✓ MARKET
+            🏙️ ATLANTA
             <br/>
-            <small>Create attention and influence.</small>
+            <small>
+              Community. Opportunity. Foundation.
+            </small>
           </div>
 
 
           <div>
-            ✓ LEAD
+            🌆 GLOBAL CITIES
             <br/>
-            <small>Build people and businesses.</small>
+            <small>
+              Expand. Connect. Influence.
+            </small>
           </div>
 
 
           <div>
             🏢 FOUNDER
             <br/>
-            <small>Create something bigger than yourself.</small>
+            <small>
+              Build systems that last.
+            </small>
           </div>
+
+
+          <div>
+            🌎 LEGACY
+            <br/>
+            <small>
+              Something bigger than yourself.
+            </small>
+          </div>
+
 
         </div>
 
       </section>
 
 
-      {/* Road Buddy */}
       <section style={{
         marginTop:"60px",
         padding:"30px"
       }}>
         🤖 <strong>Road Buddy</strong>
         <br/>
-        Your guide for the next move.
+        Helping you navigate the next move.
       </section>
 
 
