@@ -13,128 +13,80 @@ export default function Home() {
         justifyContent:"space-between",
         alignItems:"center"
       }}>
-        <h2 style={{letterSpacing:"4px"}}>
+        <h2 style={{
+          letterSpacing:"4px"
+        }}>
           SETH CLOUD
         </h2>
 
         <div style={{
-          display:"flex",
-          gap:"25px",
           opacity:.8
         }}>
-          <span>Home</span>
-          <span>Philosophy</span>
-          <span>Work</span>
-          <span>Road Buddy</span>
+          Home &nbsp; Philosophy &nbsp; Work &nbsp; Road Buddy
         </div>
       </nav>
 
 
+      {/* Opening Scene */}
+
       <section style={{
-        marginTop:"100px"
+        marginTop:"100px",
+        textAlign:"center"
       }}>
 
         <h1 style={{
           fontSize:"70px",
           lineHeight:"1.1"
         }}>
-          FROM ONE ROAD
-          <br/>
-          TO AN EMPIRE.
+          THE FIRST ROAD
         </h1>
 
         <p style={{
           fontSize:"24px",
-          opacity:.8,
-          marginTop:"30px"
+          opacity:.8
         }}>
-          Atlanta roots.
+          Before the empire,
           <br/>
-          Global vision.
-        </p>
-
-      </section>
-
-
-      <section style={{
-        marginTop:"90px",
-        border:"1px solid #333",
-        borderRadius:"25px",
-        padding:"50px"
-      }}>
-
-        <h2>
-          🛣️ ROAD ENGINE
-        </h2>
-
-        <p style={{
-          opacity:.7
-        }}>
-          Every destination begins with a first step.
+          there was a path.
         </p>
 
 
         <div style={{
-          marginTop:"50px",
-          display:"flex",
-          flexDirection:"column",
-          gap:"45px",
-          fontSize:"25px"
+          marginTop:"70px",
+          padding:"60px",
+          border:"1px solid #333",
+          borderRadius:"30px"
         }}>
 
+          🌿
 
-          <div>
-            🏠 STARTING POINT
-            <br/>
-            <small>
-              Where the vision begins.
-            </small>
+          <h2>
+            UNKNOWN TERRAIN
+          </h2>
+
+
+          <p>
+            The road begins where comfort ends.
+          </p>
+
+
+          <div style={{
+            fontSize:"50px",
+            margin:"40px"
+          }}>
+            🚶🏾‍♂️
           </div>
 
 
-          <div>
-            🚶🏾 BUILDER
+          <h3>
+            CLOUD
+          </h3>
+
+          <p>
+            Ⓢ
             <br/>
-            <small>
-              Learn. Create. Improve.
-            </small>
-          </div>
-
-
-          <div>
-            🏙️ ATLANTA
-            <br/>
-            <small>
-              Community. Opportunity. Foundation.
-            </small>
-          </div>
-
-
-          <div>
-            🌆 GLOBAL CITIES
-            <br/>
-            <small>
-              Expand. Connect. Influence.
-            </small>
-          </div>
-
-
-          <div>
-            🏢 FOUNDER
-            <br/>
-            <small>
-              Build systems that last.
-            </small>
-          </div>
-
-
-          <div>
-            🌎 LEGACY
-            <br/>
-            <small>
-              Something bigger than yourself.
-            </small>
-          </div>
+            The symbol nobody noticed yet.
+          </p>
 
 
         </div>
@@ -142,13 +94,80 @@ export default function Home() {
       </section>
 
 
+
+      {/* Swamp Challenge */}
+
       <section style={{
-        marginTop:"60px",
-        padding:"30px"
+        marginTop:"80px",
+        padding:"50px",
+        border:"1px solid #333",
+        borderRadius:"30px"
+      }}>
+
+        <h2>
+          🐊 THE SWAMP CROSSING
+        </h2>
+
+
+        <p>
+          Every path has obstacles.
+          The question is how you adapt.
+        </p>
+
+
+        <div style={{
+          display:"flex",
+          justifyContent:"center",
+          gap:"25px",
+          marginTop:"40px"
+        }}>
+
+          <button>
+            🌉 Build The Bridge
+          </button>
+
+
+          <button>
+            🛶 Create A Route
+          </button>
+
+
+          <button>
+            🚙 Find The Vehicle
+          </button>
+
+
+        </div>
+
+      </section>
+
+
+
+      <section style={{
+        marginTop:"80px",
+        textAlign:"center"
+      }}>
+
+        🏙️ Atlanta
+
+        <br/><br/>
+
+        🌎 Global Vision
+
+        <br/><br/>
+
+        🏢 SethCloud
+
+      </section>
+
+
+
+      <section style={{
+        marginTop:"60px"
       }}>
         🤖 <strong>Road Buddy</strong>
         <br/>
-        Helping you navigate the next move.
+        Your guide through the journey.
       </section>
 
 
