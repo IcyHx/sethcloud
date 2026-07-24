@@ -84,7 +84,41 @@ export default function Home() {
 
     if(step < questions.length - 1){
       setStep(step + 1);
-    } else {
+    } else {const build = updated.Build;
+const adapt = updated.Adapt;
+const drive = updated.Drive;
+
+let profile = "";
+
+if(build > 0 && adapt > 0 && drive > 0){
+  profile = "Cloud";
+}
+
+else if(build > 0 && drive > 0){
+  profile = "Founder";
+}
+
+else if(adapt > 0 && drive > 0){
+  profile = "Explorer";
+}
+
+else if(build > 0 && adapt > 0){
+  profile = "Architect";
+}
+
+else if(build > 0){
+  profile = "Build";
+}
+
+else if(adapt > 0){
+  profile = "Adapt";
+}
+
+else {
+  profile = "Drive";
+}
+
+setResult(profile);
 
       const build = updated.Build;
 const adapt = updated.Adapt;
