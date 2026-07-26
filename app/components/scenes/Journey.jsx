@@ -6,57 +6,52 @@ export default function Journey() {
 
   const stages = [
     {
-      icon: "🧠",
-      title: "Vision",
-      quote: "Every empire begins as an idea."
-    },
-    {
-      icon: "🛠️",
-      title: "Discipline",
-      quote: "Consistency turns ideas into reality."
+      icon: "🚶🏾",
+      title: "The Beginning",
+      message: "Every journey starts with one decision."
     },
     {
       icon: "🚗",
       title: "Momentum",
-      quote: "Movement creates opportunity."
+      message: "Movement creates opportunity."
     },
     {
       icon: "🏠",
       title: "Foundation",
-      quote: "Build something that lasts."
+      message: "Build stability before expansion."
     },
     {
       icon: "🏢",
       title: "Empire",
-      quote: "Systems create scale."
+      message: "Create systems that grow."
     },
     {
       icon: "👑",
       title: "Legacy",
-      quote: "The mission lives beyond you."
+      message: "The mission outlives the moment."
     }
   ];
 
 
-  const [active, setActive] = useState(0);
+  const [stage,setStage] = useState(0);
 
 
   useEffect(() => {
 
     const timer = setInterval(() => {
 
-      setActive((current) =>
+      setStage((current) =>
         current === stages.length - 1
-          ? 0
-          : current + 1
+        ? 0
+        : current + 1
       );
 
-    }, 3500);
+    },4000);
 
 
     return () => clearInterval(timer);
 
-  }, []);
+  },[]);
 
 
 
@@ -65,91 +60,57 @@ export default function Journey() {
     <main className="journey">
 
 
-      <div className="sun"></div>
-
-      <div className="stars"></div>
-
+      <div className="sky"></div>
 
 
       <div className="road">
 
-        <div className="centerLine"></div>
+        <div className="line"></div>
 
       </div>
 
 
 
 
-      <div className="traveler">
+      <div className="object">
 
-        🚶🏾
-
-      </div>
-
-
-
-
-      <div className="timeline">
-
-
-        {stages.map((stage,index)=>(
-
-          <div
-            key={index}
-            className={
-              index <= active
-              ? "stage active"
-              : "stage"
-            }
-          >
-
-            <div className="icon">
-
-              {stage.icon}
-
-            </div>
-
-
-            <h3>
-
-              {stage.title}
-
-            </h3>
-
-
-          </div>
-
-        ))}
-
+        {stages[stage].icon}
 
       </div>
-
 
 
 
 
       <div className="buddy">
 
+        🤖
 
-        <div className="robot">
-
-          🤖
-
-        </div>
-
-
-        <div className="speech">
+        <div className="bubble">
 
           <strong>
             Road Buddy
           </strong>
 
           <p>
-            {stages[active].quote}
+            {stages[stage].message}
           </p>
 
         </div>
 
+      </div>
+
+
+
+
+      <div className="stageInfo">
+
+        <h1>
+          {stages[stage].title}
+        </h1>
+
+        <p>
+          SethCloud Journey
+        </p>
 
       </div>
 
@@ -157,22 +118,26 @@ export default function Journey() {
 
 
 
-      <section className="hero">
+      <div className="progress">
 
+        {stages.map((item,index)=>(
 
-        <h1>
-          SETH CLOUD
-        </h1>
+          <div
+            key={index}
+            className={
+              index === stage
+              ? "dot active"
+              : "dot"
+            }
+          >
 
+            {index + 1}
 
-        <p>
-          Build. Adapt. Create.
-        </p>
+          </div>
 
+        ))}
 
-      </section>
-
-
+      </div>
 
 
 
@@ -184,44 +149,23 @@ export default function Journey() {
           min-height:100vh;
           background:#050505;
           color:white;
-          overflow:hidden;
-          position:relative;
           display:flex;
           justify-content:center;
           align-items:center;
+          position:relative;
+          overflow:hidden;
 
         }
 
 
 
-        .sun {
-
-          position:absolute;
-          width:500px;
-          height:500px;
-
-          background:
-          radial-gradient(circle,#444,transparent 70%);
-
-          top:-250px;
-
-          animation:pulse 6s infinite alternate;
-
-        }
-
-
-
-        .stars {
+        .sky {
 
           position:absolute;
           inset:0;
 
-          background-image:
-          radial-gradient(white 1px,transparent 1px);
-
-          background-size:90px 90px;
-
-          opacity:.25;
+          background:
+          radial-gradient(circle at top,#333,#050505 70%);
 
         }
 
@@ -231,14 +175,12 @@ export default function Journey() {
         .road {
 
           position:absolute;
-
           bottom:-200px;
 
           width:160%;
-
           height:500px;
 
-          background:#101010;
+          background:#111;
 
           transform:
           perspective(900px)
@@ -249,14 +191,11 @@ export default function Journey() {
 
 
 
-        .centerLine {
-
-          height:100%;
+        .line {
 
           width:10px;
-
+          height:100%;
           background:#555;
-
           margin:auto;
 
         }
@@ -265,49 +204,31 @@ export default function Journey() {
 
 
 
-        .traveler {
+        .object {
 
           position:absolute;
 
-          bottom:240px;
+          font-size:100px;
 
-          font-size:90px;
+          bottom:240px;
 
           z-index:3;
 
           animation:
 
-          walk 6s infinite alternate ease-in-out;
+          appear .8s ease;
 
         }
 
 
 
 
-        .timeline {
 
-          position:absolute;
+        .stageInfo {
 
-          top:50px;
-
-          width:95%;
-
-          display:flex;
-
-          justify-content:space-around;
+          position:relative;
 
           z-index:5;
-
-        }
-
-
-
-
-        .stage {
-
-          opacity:.25;
-
-          transition:.5s;
 
           text-align:center;
 
@@ -316,29 +237,26 @@ export default function Journey() {
 
 
 
-        .stage.active {
+        h1 {
 
-          opacity:1;
+          font-size:
 
-          transform:translateY(-15px);
+          clamp(40px,7vw,85px);
 
-        }
+          letter-spacing:12px;
 
-
-
-
-        .icon {
-
-          font-size:38px;
+          margin:0;
 
         }
 
 
 
 
-        .stage h3 {
+        .stageInfo p {
 
-          font-size:15px;
+          font-size:24px;
+
+          opacity:.7;
 
         }
 
@@ -354,29 +272,22 @@ export default function Journey() {
 
           bottom:30%;
 
+          z-index:6;
+
           display:flex;
 
           gap:15px;
 
           align-items:center;
 
-          z-index:6;
+          font-size:45px;
 
         }
 
 
 
 
-        .robot {
-
-          font-size:50px;
-
-        }
-
-
-
-
-        .speech {
+        .bubble {
 
           background:#111;
 
@@ -386,56 +297,18 @@ export default function Journey() {
 
           border-radius:15px;
 
-          max-width:240px;
+          max-width:220px;
+
+          font-size:16px;
 
         }
 
 
 
 
-        .speech p {
+        .bubble p {
 
-          margin:5px 0 0;
-
-          opacity:.75;
-
-        }
-
-
-
-
-
-        .hero {
-
-          z-index:4;
-
-          text-align:center;
-
-        }
-
-
-
-
-
-        h1 {
-
-          font-size:
-
-          clamp(45px,8vw,100px);
-
-          letter-spacing:18px;
-
-          margin:0;
-
-        }
-
-
-
-
-
-        .hero p {
-
-          font-size:30px;
+          margin:8px 0 0;
 
           opacity:.8;
 
@@ -445,38 +318,73 @@ export default function Journey() {
 
 
 
-        @keyframes walk {
+        .progress {
 
-          from {
+          position:absolute;
 
-            transform:translateX(-220px);
+          bottom:50px;
 
-          }
+          display:flex;
 
+          gap:20px;
 
-          to {
-
-            transform:translateX(220px);
-
-          }
+          z-index:5;
 
         }
 
 
 
 
-        @keyframes pulse {
+        .dot {
+
+          width:35px;
+
+          height:35px;
+
+          border-radius:50%;
+
+          border:1px solid #555;
+
+          display:flex;
+
+          align-items:center;
+
+          justify-content:center;
+
+          opacity:.4;
+
+        }
+
+
+
+
+        .dot.active {
+
+          opacity:1;
+
+          transform:scale(1.2);
+
+        }
+
+
+
+
+        @keyframes appear {
 
           from {
 
-            opacity:.3;
+            opacity:0;
+
+            transform:translateY(50px) scale(.7);
 
           }
 
 
           to {
 
-            opacity:.8;
+            opacity:1;
+
+            transform:translateY(0) scale(1);
 
           }
 
