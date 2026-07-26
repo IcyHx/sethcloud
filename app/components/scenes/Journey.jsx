@@ -4,54 +4,54 @@ import { useEffect, useState } from "react";
 
 export default function Journey() {
 
-  const stages = [
+  const scenes = [
     {
       icon: "🚶🏾",
-      title: "The Beginning",
-      message: "Every journey starts with one decision."
+      title: "THE WALK",
+      quote: "Every empire begins with a first step."
     },
     {
       icon: "🚗",
-      title: "Momentum",
-      message: "Movement creates opportunity."
+      title: "THE DRIVE",
+      quote: "Control your direction."
     },
     {
       icon: "🏠",
-      title: "Foundation",
-      message: "Build stability before expansion."
+      title: "THE FOUNDATION",
+      quote: "Build what can support the future."
     },
     {
       icon: "🏢",
-      title: "Empire",
-      message: "Create systems that grow."
+      title: "THE EMPIRE",
+      quote: "Create systems bigger than yourself."
     },
     {
       icon: "👑",
-      title: "Legacy",
-      message: "The mission outlives the moment."
+      title: "THE LEGACY",
+      quote: "Leave something meaningful behind."
     }
   ];
 
 
-  const [stage,setStage] = useState(0);
+  const [scene, setScene] = useState(0);
 
 
   useEffect(() => {
 
     const timer = setInterval(() => {
 
-      setStage((current) =>
-        current === stages.length - 1
-        ? 0
-        : current + 1
+      setScene((current) =>
+        current === scenes.length - 1
+          ? 0
+          : current + 1
       );
 
-    },4000);
+    }, 4500);
 
 
     return () => clearInterval(timer);
 
-  },[]);
+  }, []);
 
 
 
@@ -63,54 +63,79 @@ export default function Journey() {
       <div className="sky"></div>
 
 
+      <div className="stars"></div>
+
+
+
+      <div className="mountains">
+
+        <div></div>
+        <div></div>
+        <div></div>
+
+      </div>
+
+
+
+
       <div className="road">
 
-        <div className="line"></div>
+        <div className="roadLine"></div>
 
       </div>
 
 
 
 
-      <div className="object">
+      <div className="sceneObject">
 
-        {stages[stage].icon}
+        {scenes[scene].icon}
 
       </div>
+
+
+
+
+
+      <div className="camera">
+
+        <section>
+
+          <h1>
+            SETH CLOUD
+          </h1>
+
+          <p>
+            {scenes[scene].title}
+          </p>
+
+        </section>
+
+      </div>
+
 
 
 
 
       <div className="buddy">
 
-        🤖
+        <div className="robot">
+          🤖
+        </div>
 
-        <div className="bubble">
+
+        <div className="message">
 
           <strong>
             Road Buddy
           </strong>
 
           <p>
-            {stages[stage].message}
+            {scenes[scene].quote}
           </p>
 
         </div>
 
-      </div>
-
-
-
-
-      <div className="stageInfo">
-
-        <h1>
-          {stages[stage].title}
-        </h1>
-
-        <p>
-          SethCloud Journey
-        </p>
 
       </div>
 
@@ -118,26 +143,23 @@ export default function Journey() {
 
 
 
-      <div className="progress">
+      <div className="controls">
 
-        {stages.map((item,index)=>(
+        {scenes.map((item,index)=>(
 
-          <div
+          <span
             key={index}
             className={
-              index === stage
-              ? "dot active"
-              : "dot"
+              index === scene
+              ? "active"
+              : ""
             }
-          >
-
-            {index + 1}
-
-          </div>
+          />
 
         ))}
 
       </div>
+
 
 
 
@@ -149,11 +171,11 @@ export default function Journey() {
           min-height:100vh;
           background:#050505;
           color:white;
+          overflow:hidden;
+          position:relative;
           display:flex;
           justify-content:center;
           align-items:center;
-          position:relative;
-          overflow:hidden;
 
         }
 
@@ -165,7 +187,66 @@ export default function Journey() {
           inset:0;
 
           background:
-          radial-gradient(circle at top,#333,#050505 70%);
+          linear-gradient(
+          to bottom,
+          #222,
+          #050505
+          );
+
+        }
+
+
+
+        .stars {
+
+          position:absolute;
+          inset:0;
+
+          opacity:.25;
+
+          background-image:
+          radial-gradient(
+          white 1px,
+          transparent 1px
+          );
+
+          background-size:90px 90px;
+
+        }
+
+
+
+
+        .mountains {
+
+          position:absolute;
+          bottom:180px;
+          width:100%;
+          height:250px;
+
+          display:flex;
+          justify-content:center;
+          gap:40px;
+
+        }
+
+
+
+        .mountains div {
+
+          width:300px;
+          height:250px;
+
+          background:#111;
+
+          clip-path:
+          polygon(
+          50% 0,
+          100% 100%,
+          0 100%
+          );
+
+          opacity:.8;
 
         }
 
@@ -175,27 +256,29 @@ export default function Journey() {
         .road {
 
           position:absolute;
-          bottom:-200px;
+          bottom:-250px;
 
-          width:160%;
-          height:500px;
+          width:170%;
+          height:550px;
 
           background:#111;
 
           transform:
-          perspective(900px)
+          perspective(1000px)
           rotateX(60deg);
+
+          animation:drive 8s infinite linear;
 
         }
 
 
 
 
-        .line {
+        .roadLine {
 
-          width:10px;
           height:100%;
-          background:#555;
+          width:12px;
+          background:#666;
           margin:auto;
 
         }
@@ -204,30 +287,26 @@ export default function Journey() {
 
 
 
-        .object {
+        .sceneObject {
 
           position:absolute;
+          bottom:260px;
 
-          font-size:100px;
-
-          bottom:240px;
+          font-size:110px;
 
           z-index:3;
 
           animation:
-
-          appear .8s ease;
+          enter .8s ease;
 
         }
 
 
 
 
-
-        .stageInfo {
+        .camera {
 
           position:relative;
-
           z-index:5;
 
           text-align:center;
@@ -240,10 +319,9 @@ export default function Journey() {
         h1 {
 
           font-size:
+          clamp(50px,9vw,120px);
 
-          clamp(40px,7vw,85px);
-
-          letter-spacing:12px;
+          letter-spacing:20px;
 
           margin:0;
 
@@ -252,14 +330,12 @@ export default function Journey() {
 
 
 
-        .stageInfo p {
+        .camera p {
 
-          font-size:24px;
-
-          opacity:.7;
+          font-size:30px;
+          opacity:.8;
 
         }
-
 
 
 
@@ -268,45 +344,49 @@ export default function Journey() {
 
           position:absolute;
 
-          right:40px;
-
+          right:50px;
           bottom:30%;
-
-          z-index:6;
 
           display:flex;
 
-          gap:15px;
-
           align-items:center;
 
-          font-size:45px;
+          gap:15px;
+
+          z-index:6;
 
         }
 
 
 
 
-        .bubble {
+        .robot {
+
+          font-size:55px;
+
+        }
+
+
+
+
+        .message {
 
           background:#111;
 
           border:1px solid #444;
 
-          padding:15px;
-
           border-radius:15px;
 
-          max-width:220px;
+          padding:15px;
 
-          font-size:16px;
+          max-width:240px;
 
         }
 
 
 
 
-        .bubble p {
+        .message p {
 
           margin:8px 0 0;
 
@@ -318,15 +398,15 @@ export default function Journey() {
 
 
 
-        .progress {
+        .controls {
 
           position:absolute;
 
-          bottom:50px;
+          bottom:40px;
 
           display:flex;
 
-          gap:20px;
+          gap:15px;
 
           z-index:5;
 
@@ -335,47 +415,60 @@ export default function Journey() {
 
 
 
-        .dot {
+        .controls span {
 
-          width:35px;
-
-          height:35px;
+          width:15px;
+          height:15px;
 
           border-radius:50%;
 
-          border:1px solid #555;
+          border:1px solid white;
 
-          display:flex;
-
-          align-items:center;
-
-          justify-content:center;
-
-          opacity:.4;
+          opacity:.3;
 
         }
 
 
 
 
-        .dot.active {
+        .controls .active {
 
           opacity:1;
 
-          transform:scale(1.2);
+          transform:scale(1.3);
 
         }
 
 
 
 
-        @keyframes appear {
+
+        @keyframes drive {
+
+          from {
+
+            background-position:0 0;
+
+          }
+
+          to {
+
+            background-position:0 500px;
+
+          }
+
+        }
+
+
+
+
+        @keyframes enter {
 
           from {
 
             opacity:0;
 
-            transform:translateY(50px) scale(.7);
+            transform:translateY(80px) scale(.5);
 
           }
 
