@@ -2,17 +2,41 @@
 
 export default function Journey() {
 
+  const steps = [
+    {
+      icon: "🧠",
+      title: "Vision",
+      text: "See the destination before the world does."
+    },
+    {
+      icon: "🛠️",
+      title: "Skills",
+      text: "Build the tools to create value."
+    },
+    {
+      icon: "🚗",
+      title: "Momentum",
+      text: "Movement creates opportunity."
+    },
+    {
+      icon: "🏢",
+      title: "Empire",
+      text: "Turn principles into systems."
+    }
+  ];
+
+
   return (
 
     <main className="journey">
 
 
-      <div className="sky"></div>
+      <div className="backgroundGlow"></div>
 
 
       <div className="road">
 
-        <div className="roadMark"></div>
+        <div className="lane"></div>
 
       </div>
 
@@ -20,73 +44,60 @@ export default function Journey() {
 
       <div className="traveler">
 
-        <div className="person">
-          🚶🏾
+        🚶🏾
+
+      </div>
+
+
+
+      <div className="roadBuddy">
+
+        <div className="bot">
+          🤖
         </div>
 
-        <div className="shadow"></div>
+        <div className="bubble">
+
+          <h3>
+            Road Buddy
+          </h3>
+
+          <p>
+            Stay focused. The road rewards consistency.
+          </p>
+
+        </div>
 
       </div>
 
 
 
 
-      <div className="checkpoints">
+      <div className="timeline">
 
 
-        <div className="checkpoint active">
+        {steps.map((step,index)=>(
 
-          <div className="icon">
-            🧠
+          <div 
+            className="checkpoint"
+            key={index}
+          >
+
+            <div className="icon">
+              {step.icon}
+            </div>
+
+            <h3>
+              {step.title}
+            </h3>
+
+            <p>
+              {step.text}
+            </p>
+
           </div>
 
-          <p>
-            Vision
-          </p>
-
-        </div>
-
-
-
-        <div className="checkpoint">
-
-          <div className="icon">
-            🚗
-          </div>
-
-          <p>
-            Vehicle
-          </p>
-
-        </div>
-
-
-
-        <div className="checkpoint">
-
-          <div className="icon">
-            🏠
-          </div>
-
-          <p>
-            Foundation
-          </p>
-
-        </div>
-
-
-
-        <div className="checkpoint">
-
-          <div className="icon">
-            🏢
-          </div>
-
-          <p>
-            Empire
-          </p>
-
-        </div>
+        ))}
 
 
       </div>
@@ -95,21 +106,19 @@ export default function Journey() {
 
 
 
-      <section className="message">
-
+      <section className="intro">
 
         <h1>
-          THE ROAD BEGINS
+          THE ROAD IS YOURS
         </h1>
 
 
         <p>
-          Vision creates direction. Discipline creates destiny.
+          Build the vision. Master the process. Create the legacy.
         </p>
 
 
       </section>
-
 
 
 
@@ -125,20 +134,20 @@ export default function Journey() {
           position:relative;
           overflow:hidden;
           display:flex;
-          justify-content:center;
           align-items:center;
+          justify-content:center;
 
         }
 
 
 
-        .sky {
+        .backgroundGlow {
 
           position:absolute;
           inset:0;
 
           background:
-          radial-gradient(circle at top,#333,#050505 65%);
+          radial-gradient(circle at top,#303030,#050505 70%);
 
         }
 
@@ -147,28 +156,25 @@ export default function Journey() {
         .road {
 
           position:absolute;
+          bottom:-180px;
 
-          bottom:-150px;
-
-          width:140%;
-          height:380px;
+          width:150%;
+          height:420px;
 
           background:#111;
 
           transform:
-          perspective(700px)
+          perspective(800px)
           rotateX(60deg);
-
-          animation:roadMove 8s infinite linear;
 
         }
 
 
 
-        .roadMark {
+        .lane {
 
-          height:100%;
           width:8px;
+          height:100%;
           background:#555;
           margin:auto;
 
@@ -176,104 +182,141 @@ export default function Journey() {
 
 
 
+
         .traveler {
 
           position:absolute;
+          bottom:210px;
 
-          bottom:190px;
-
-          z-index:2;
-
-        }
-
-
-
-        .person {
-
-          font-size:75px;
+          font-size:80px;
 
           animation:
 
-          walk 3s infinite alternate ease-in-out;
+          walk 5s infinite alternate ease-in-out;
+
+          z-index:3;
 
         }
 
 
 
-        .shadow {
 
-          width:60px;
-          height:15px;
-          background:#000;
+        .roadBuddy {
 
-          border-radius:50%;
+          position:absolute;
+          right:8%;
+          bottom:35%;
 
-          margin:auto;
+          display:flex;
+          align-items:center;
+          gap:15px;
 
-          opacity:.6;
+          z-index:4;
 
         }
 
 
 
-        .checkpoints {
+
+        .bot {
+
+          font-size:45px;
+
+        }
+
+
+
+
+        .bubble {
+
+          background:#111;
+          border:1px solid #444;
+
+          padding:15px;
+
+          border-radius:15px;
+
+          max-width:220px;
+
+        }
+
+
+
+
+        .bubble h3 {
+
+          margin:0 0 5px;
+
+        }
+
+
+
+        .bubble p {
+
+          margin:0;
+          opacity:.8;
+
+        }
+
+
+
+
+        .timeline {
 
           position:absolute;
 
-          top:80px;
+          top:60px;
 
-          width:85%;
+          width:90%;
 
           display:flex;
 
           justify-content:space-between;
 
-          z-index:2;
+          z-index:3;
 
         }
+
 
 
 
         .checkpoint {
 
+          width:180px;
+
           text-align:center;
 
-          opacity:.45;
+          opacity:.85;
 
         }
 
-
-
-        .checkpoint.active {
-
-          opacity:1;
-
-        }
 
 
 
         .icon {
 
-          font-size:35px;
+          font-size:40px;
 
         }
+
 
 
 
         .checkpoint p {
 
-          margin-top:8px;
+          font-size:14px;
+          opacity:.7;
 
         }
 
 
 
 
-        .message {
+        .intro {
 
           position:relative;
 
-          z-index:3;
+          z-index:5;
 
           text-align:center;
 
@@ -283,11 +326,11 @@ export default function Journey() {
 
 
 
+
         h1 {
 
           font-size:
-
-          clamp(40px,7vw,80px);
+          clamp(40px,7vw,85px);
 
           letter-spacing:15px;
 
@@ -297,7 +340,8 @@ export default function Journey() {
 
 
 
-        .message p {
+
+        .intro p {
 
           font-size:24px;
 
@@ -310,42 +354,18 @@ export default function Journey() {
 
         @keyframes walk {
 
-
           from {
 
-            transform:translateX(-120px);
+            transform:translateX(-150px);
 
           }
 
 
           to {
 
-            transform:translateX(120px);
+            transform:translateX(150px);
 
           }
-
-
-        }
-
-
-
-
-        @keyframes roadMove {
-
-
-          from {
-
-            background-position:0;
-
-          }
-
-
-          to {
-
-            background-position:0 200px;
-
-          }
-
 
         }
 
