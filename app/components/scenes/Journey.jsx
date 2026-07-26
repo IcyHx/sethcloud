@@ -1,60 +1,117 @@
 "use client";
 
 export default function Journey() {
+
   return (
+
     <main className="journey">
 
-      <div className="sky"></div>
 
-      <div className="stars"></div>
+      <div className="sky"></div>
 
 
       <div className="road">
 
-        <div className="roadLine"></div>
+        <div className="roadMark"></div>
 
       </div>
 
 
-      <div className="walker">
-        🚶🏾
+
+      <div className="traveler">
+
+        <div className="person">
+          🚶🏾
+        </div>
+
+        <div className="shadow"></div>
+
       </div>
 
 
-      <div className="milestones">
 
-        <div className="step stepOne">
-          <span>1</span>
-          <p>Vision</p>
+
+      <div className="checkpoints">
+
+
+        <div className="checkpoint active">
+
+          <div className="icon">
+            🧠
+          </div>
+
+          <p>
+            Vision
+          </p>
+
         </div>
 
 
-        <div className="step stepTwo">
-          <span>2</span>
-          <p>Discipline</p>
+
+        <div className="checkpoint">
+
+          <div className="icon">
+            🚗
+          </div>
+
+          <p>
+            Vehicle
+          </p>
+
         </div>
 
 
-        <div className="step stepThree">
-          <span>3</span>
-          <p>Creation</p>
+
+        <div className="checkpoint">
+
+          <div className="icon">
+            🏠
+          </div>
+
+          <p>
+            Foundation
+          </p>
+
+        </div>
+
+
+
+        <div className="checkpoint">
+
+          <div className="icon">
+            🏢
+          </div>
+
+          <p>
+            Empire
+          </p>
+
         </div>
 
 
       </div>
+
+
+
 
 
       <section className="message">
 
+
         <h1>
-          THE JOURNEY BEGINS
+          THE ROAD BEGINS
         </h1>
 
+
         <p>
-          Every empire starts with one step.
+          Vision creates direction. Discipline creates destiny.
         </p>
 
+
       </section>
+
+
+
 
 
 
@@ -79,22 +136,9 @@ export default function Journey() {
 
           position:absolute;
           inset:0;
+
           background:
-          radial-gradient(circle at top, #222, #050505 70%);
-
-        }
-
-
-
-        .stars {
-
-          position:absolute;
-          inset:0;
-          opacity:.5;
-          background-image:
-          radial-gradient(white 1px, transparent 1px);
-
-          background-size:80px 80px;
+          radial-gradient(circle at top,#333,#050505 65%);
 
         }
 
@@ -103,97 +147,137 @@ export default function Journey() {
         .road {
 
           position:absolute;
-          bottom:-120px;
-          width:130%;
-          height:320px;
+
+          bottom:-150px;
+
+          width:140%;
+          height:380px;
+
           background:#111;
-          transform:perspective(600px) rotateX(55deg);
+
+          transform:
+          perspective(700px)
+          rotateX(60deg);
+
+          animation:roadMove 8s infinite linear;
 
         }
 
 
 
-        .roadLine {
+        .roadMark {
 
-          width:10px;
           height:100%;
+          width:8px;
           background:#555;
           margin:auto;
-          opacity:.7;
 
         }
 
 
 
-        .walker {
+        .traveler {
 
           position:absolute;
-          bottom:170px;
-          font-size:70px;
+
+          bottom:190px;
+
+          z-index:2;
+
+        }
+
+
+
+        .person {
+
+          font-size:75px;
 
           animation:
 
-          walk 5s infinite alternate ease-in-out;
+          walk 3s infinite alternate ease-in-out;
 
         }
 
 
 
-        .milestones {
+        .shadow {
 
-          position:absolute;
-          bottom:260px;
-          width:80%;
-          display:flex;
-          justify-content:space-between;
-
-        }
-
-
-
-        .step {
-
-          text-align:center;
-          opacity:.8;
-
-        }
-
-
-
-        .step span {
-
-          display:flex;
-          justify-content:center;
-          align-items:center;
-
-          width:45px;
-          height:45px;
+          width:60px;
+          height:15px;
+          background:#000;
 
           border-radius:50%;
 
-          background:#111;
-          border:1px solid #555;
-
           margin:auto;
 
+          opacity:.6;
+
+        }
+
+
+
+        .checkpoints {
+
+          position:absolute;
+
+          top:80px;
+
+          width:85%;
+
+          display:flex;
+
+          justify-content:space-between;
+
+          z-index:2;
+
         }
 
 
 
-        .step p {
+        .checkpoint {
 
-          margin-top:10px;
-          font-size:16px;
+          text-align:center;
+
+          opacity:.45;
 
         }
+
+
+
+        .checkpoint.active {
+
+          opacity:1;
+
+        }
+
+
+
+        .icon {
+
+          font-size:35px;
+
+        }
+
+
+
+        .checkpoint p {
+
+          margin-top:8px;
+
+        }
+
 
 
 
         .message {
 
           position:relative;
+
           z-index:3;
+
           text-align:center;
+
+          padding:20px;
 
         }
 
@@ -201,8 +285,12 @@ export default function Journey() {
 
         h1 {
 
-          font-size:clamp(35px,6vw,70px);
-          letter-spacing:12px;
+          font-size:
+
+          clamp(40px,7vw,80px);
+
+          letter-spacing:15px;
+
           margin:0;
 
         }
@@ -212,26 +300,52 @@ export default function Journey() {
         .message p {
 
           font-size:24px;
+
           opacity:.75;
 
         }
 
 
 
+
         @keyframes walk {
+
 
           from {
 
-            transform:translateX(-160px);
+            transform:translateX(-120px);
 
           }
 
 
           to {
 
-            transform:translateX(160px);
+            transform:translateX(120px);
 
           }
+
+
+        }
+
+
+
+
+        @keyframes roadMove {
+
+
+          from {
+
+            background-position:0;
+
+          }
+
+
+          to {
+
+            background-position:0 200px;
+
+          }
+
 
         }
 
@@ -241,5 +355,7 @@ export default function Journey() {
 
 
     </main>
+
   );
+
 }
