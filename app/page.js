@@ -1,17 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Journey from "./components/scenes/Journey";
 
 export default function Home() {
 
   const [entered, setEntered] = useState(false);
 
   useEffect(() => {
+
     const timer = setTimeout(() => {
       setEntered(true);
-    }, 3000);
+    }, 5000);
 
     return () => clearTimeout(timer);
+
   }, []);
 
 
@@ -23,62 +26,26 @@ export default function Home() {
         background: "#050505",
         color: "white",
         overflow: "hidden",
-        fontFamily: "Arial"
+        fontFamily: "Arial, Helvetica, sans-serif"
       }}
     >
 
       {!entered ? (
 
-        <section
-
-          style={{
-            minHeight:"100vh",
-            display:"flex",
-            flexDirection:"column",
-            justifyContent:"center",
-            alignItems:"center",
-            textAlign:"center"
-          }}
-
-        >
-
-          <h1
-            style={{
-              fontSize:"70px",
-              letterSpacing:"15px"
-            }}
-          >
-            SETH CLOUD
-          </h1>
-
-
-          <p
-            style={{
-              fontSize:"24px",
-              opacity:.7
-            }}
-          >
-            The journey begins...
-          </p>
-
-
-        </section>
-
+        <Journey />
 
       ) : (
 
         <section
 
           style={{
-
-            minHeight:"100vh",
-            display:"flex",
-            flexDirection:"column",
-            justifyContent:"center",
-            alignItems:"center",
-            textAlign:"center",
-            padding:"40px"
-
+            minHeight: "100vh",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
+            padding: "40px"
           }}
 
         >
@@ -86,10 +53,9 @@ export default function Home() {
           <h1
 
             style={{
-
-              fontSize:"80px",
-              letterSpacing:"15px"
-
+              fontSize: "clamp(45px, 8vw, 90px)",
+              letterSpacing: "15px",
+              marginBottom: "20px"
             }}
 
           >
@@ -99,14 +65,12 @@ export default function Home() {
           </h1>
 
 
-
           <p
 
             style={{
-
-              fontSize:"28px",
-              opacity:.8
-
+              fontSize: "clamp(20px, 3vw, 32px)",
+              opacity: 0.8,
+              marginBottom: "40px"
             }}
 
           >
@@ -116,9 +80,16 @@ export default function Home() {
           </p>
 
 
+          <div
 
-          <div>
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              gap: "15px"
+            }}
 
+          >
 
             <button>
               📚 Learn The Principles
@@ -148,14 +119,14 @@ export default function Home() {
 
             button {
 
-              padding:18px;
-              margin:10px;
+              padding:18px 25px;
               background:#111;
               color:white;
               border:1px solid #444;
               border-radius:12px;
               font-size:18px;
               cursor:pointer;
+              transition:.3s;
 
             }
 
@@ -163,6 +134,7 @@ export default function Home() {
             button:hover {
 
               transform:scale(1.05);
+              border-color:white;
 
             }
 
