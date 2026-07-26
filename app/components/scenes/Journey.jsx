@@ -1,60 +1,62 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Journey() {
 
   const stages = [
     {
-      icon:"🧠",
-      title:"Vision",
-      description:"The idea begins."
+      icon: "🧠",
+      title: "Vision",
+      quote: "Every empire begins as an idea."
     },
     {
-      icon:"🛠️",
-      title:"Skill",
-      description:"The builder is created."
+      icon: "🛠️",
+      title: "Discipline",
+      quote: "Consistency turns ideas into reality."
     },
     {
-      icon:"🚗",
-      title:"Momentum",
-      description:"Movement creates freedom."
+      icon: "🚗",
+      title: "Momentum",
+      quote: "Movement creates opportunity."
     },
     {
-      icon:"🏠",
-      title:"Foundation",
-      description:"Build something lasting."
+      icon: "🏠",
+      title: "Foundation",
+      quote: "Build something that lasts."
     },
     {
-      icon:"🏢",
-      title:"Empire",
-      description:"Systems create scale."
+      icon: "🏢",
+      title: "Empire",
+      quote: "Systems create scale."
     },
     {
-      icon:"👑",
-      title:"Legacy",
-      description:"The mission continues."
+      icon: "👑",
+      title: "Legacy",
+      quote: "The mission lives beyond you."
     }
   ];
 
 
-  const [active,setActive] = useState(0);
+  const [active, setActive] = useState(0);
 
 
-  useEffect(()=>{
+  useEffect(() => {
 
-    const timer = setInterval(()=>{
+    const timer = setInterval(() => {
 
-      setActive(prev => 
-        prev < stages.length - 1 ? prev + 1 : 0
+      setActive((current) =>
+        current === stages.length - 1
+          ? 0
+          : current + 1
       );
 
-    },3000);
+    }, 3500);
 
 
-    return ()=>clearInterval(timer);
+    return () => clearInterval(timer);
 
-  },[]);
+  }, []);
 
 
 
@@ -63,8 +65,7 @@ export default function Journey() {
     <main className="journey">
 
 
-      <div className="sky"></div>
-
+      <div className="sun"></div>
 
       <div className="stars"></div>
 
@@ -72,7 +73,7 @@ export default function Journey() {
 
       <div className="road">
 
-        <div className="roadStripe"></div>
+        <div className="centerLine"></div>
 
       </div>
 
@@ -88,7 +89,7 @@ export default function Journey() {
 
 
 
-      <div className="progress">
+      <div className="timeline">
 
 
         {stages.map((stage,index)=>(
@@ -96,13 +97,13 @@ export default function Journey() {
           <div
             key={index}
             className={
-              index <= active 
+              index <= active
               ? "stage active"
               : "stage"
             }
           >
 
-            <div className="circle">
+            <div className="icon">
 
               {stage.icon}
 
@@ -110,17 +111,13 @@ export default function Journey() {
 
 
             <h3>
+
               {stage.title}
+
             </h3>
 
 
-            <p>
-              {stage.description}
-            </p>
-
-
           </div>
-
 
         ))}
 
@@ -131,21 +128,28 @@ export default function Journey() {
 
 
 
-      <div className="roadBuddy">
+      <div className="buddy">
 
-        🤖
 
-        <div className="message">
+        <div className="robot">
+
+          🤖
+
+        </div>
+
+
+        <div className="speech">
 
           <strong>
             Road Buddy
           </strong>
 
           <p>
-            Stage {active + 1}: {stages[active].title}
+            {stages[active].quote}
           </p>
 
         </div>
+
 
       </div>
 
@@ -155,13 +159,16 @@ export default function Journey() {
 
       <section className="hero">
 
+
         <h1>
           SETH CLOUD
         </h1>
 
+
         <p>
-          From one step to an empire.
+          Build. Adapt. Create.
         </p>
+
 
       </section>
 
@@ -187,16 +194,20 @@ export default function Journey() {
 
 
 
-        .sky {
+        .sun {
 
           position:absolute;
-          inset:0;
+          width:500px;
+          height:500px;
 
           background:
-          radial-gradient(circle at top,#292929,#050505 70%);
+          radial-gradient(circle,#444,transparent 70%);
+
+          top:-250px;
+
+          animation:pulse 6s infinite alternate;
 
         }
-
 
 
 
@@ -205,12 +216,12 @@ export default function Journey() {
           position:absolute;
           inset:0;
 
-          opacity:.3;
-
           background-image:
           radial-gradient(white 1px,transparent 1px);
 
-          background-size:70px 70px;
+          background-size:90px 90px;
+
+          opacity:.25;
 
         }
 
@@ -220,12 +231,14 @@ export default function Journey() {
         .road {
 
           position:absolute;
-          bottom:-180px;
 
-          width:150%;
-          height:450px;
+          bottom:-200px;
 
-          background:#111;
+          width:160%;
+
+          height:500px;
+
+          background:#101010;
 
           transform:
           perspective(900px)
@@ -236,11 +249,14 @@ export default function Journey() {
 
 
 
-        .roadStripe {
+        .centerLine {
+
+          height:100%;
 
           width:10px;
-          height:100%;
+
           background:#555;
+
           margin:auto;
 
         }
@@ -252,21 +268,23 @@ export default function Journey() {
         .traveler {
 
           position:absolute;
-          bottom:220px;
 
-          font-size:85px;
+          bottom:240px;
 
-          animation:
-          walk 5s infinite alternate;
+          font-size:90px;
 
           z-index:3;
+
+          animation:
+
+          walk 6s infinite alternate ease-in-out;
 
         }
 
 
 
 
-        .progress {
+        .timeline {
 
           position:absolute;
 
@@ -278,7 +296,7 @@ export default function Journey() {
 
           justify-content:space-around;
 
-          z-index:4;
+          z-index:5;
 
         }
 
@@ -287,13 +305,11 @@ export default function Journey() {
 
         .stage {
 
-          width:130px;
-
-          text-align:center;
-
           opacity:.25;
 
           transition:.5s;
+
+          text-align:center;
 
         }
 
@@ -304,90 +320,94 @@ export default function Journey() {
 
           opacity:1;
 
-          transform:translateY(-10px);
+          transform:translateY(-15px);
 
         }
 
 
 
 
-        .circle {
+        .icon {
 
-          width:55px;
-          height:55px;
-
-          margin:auto;
-
-          border-radius:50%;
-
-          border:1px solid #555;
-
-          display:flex;
-
-          justify-content:center;
-          align-items:center;
-
-          font-size:30px;
+          font-size:38px;
 
         }
 
 
 
 
-        .stage p {
+        .stage h3 {
 
-          font-size:13px;
-          opacity:.7;
+          font-size:15px;
 
         }
 
 
 
 
-        .roadBuddy {
+
+        .buddy {
 
           position:absolute;
 
           right:40px;
-          bottom:35%;
 
-          font-size:45px;
+          bottom:30%;
 
           display:flex;
 
-          gap:10px;
+          gap:15px;
 
           align-items:center;
 
-          z-index:5;
+          z-index:6;
 
         }
 
 
 
 
-        .message {
+        .robot {
+
+          font-size:50px;
+
+        }
+
+
+
+
+        .speech {
 
           background:#111;
 
           border:1px solid #444;
 
-          padding:12px;
+          padding:15px;
 
-          border-radius:12px;
+          border-radius:15px;
 
-          font-size:14px;
+          max-width:240px;
 
         }
+
+
+
+
+        .speech p {
+
+          margin:5px 0 0;
+
+          opacity:.75;
+
+        }
+
 
 
 
 
         .hero {
 
-          position:relative;
-
-          z-index:5;
+          z-index:4;
 
           text-align:center;
 
@@ -396,9 +416,11 @@ export default function Journey() {
 
 
 
+
         h1 {
 
           font-size:
+
           clamp(45px,8vw,100px);
 
           letter-spacing:18px;
@@ -410,9 +432,10 @@ export default function Journey() {
 
 
 
+
         .hero p {
 
-          font-size:28px;
+          font-size:30px;
 
           opacity:.8;
 
@@ -421,18 +444,39 @@ export default function Journey() {
 
 
 
+
         @keyframes walk {
 
           from {
 
-            transform:translateX(-180px);
+            transform:translateX(-220px);
 
           }
 
 
           to {
 
-            transform:translateX(180px);
+            transform:translateX(220px);
+
+          }
+
+        }
+
+
+
+
+        @keyframes pulse {
+
+          from {
+
+            opacity:.3;
+
+          }
+
+
+          to {
+
+            opacity:.8;
 
           }
 
